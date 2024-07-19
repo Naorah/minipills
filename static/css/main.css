@@ -1,0 +1,107 @@
+@font-face {
+  font-family: nunito;
+  src: url("Nunito.ttf") format("opentype");
+}
+
+:root {
+  --color: #a12613;
+  --back: #212121;
+  --darker: #0c0c0c;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: nunito;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  padding: 0px;
+  margin: 0px;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: normal;
+}
+
+.bolding {
+  font-weight: bold;
+}
+
+.highlight {
+  color: var(--color);
+}
+
+.bg-back {
+  background-color: var(--back);
+}
+
+.c-back {
+  background-color: var(--color);
+}
+
+.d-back {
+  background-color: var(--darker);
+}
+
+.bg-text {
+  color: var(--back);
+}
+
+.c-text {
+  color: var(--color);
+}
+
+.w-text {
+  color: white;
+}
+
+.mp-description {
+  font-size: 1.3rem;
+  padding-bottom: 2rem;
+}
+
+.mp-container {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-right: 2rem;
+  padding-left: 2rem;
+}
+
+.first-section {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.mp-h1 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 5rem;
+}
+
+.mp-semi-title {
+  padding-bottom: 1rem;
+  font-size: 2.5rem;
+}
+
+.mp-how {
+  color: white;
+}
+
+/* ##### GRID ##### */
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px; 
+}
+
+@media (max-width: 800px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
