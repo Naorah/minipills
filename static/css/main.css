@@ -248,6 +248,17 @@ tr {
 }
 
 @media (max-width: 1000px) {
+  .mp-description {
+    padding-bottom: 0.5rem;
+  }
+
+  .mp-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
   .mp-grid-container {
     grid-template-columns: 1fr;
     margin-right: 5%;

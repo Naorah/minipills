@@ -79,11 +79,13 @@
     </div>
 
     <div>
-      <img src="http://localhost:5173/pill?1t=It looks" alt="pill-test">
+      <img src="http://localhost:5173/pill?1t=Pills" alt="pill-test">
+
+      <img src="http://localhost:5173/pill?1t=looks" alt="pill-test">
     
-      <img src="http://localhost:5173/pill?1t=Really" alt="pill-test">
+      <img src="http://localhost:5173/pill?1t=really" alt="pill-test">
   
-      <img src="http://localhost:5173/pill?1t=Cute ?" alt="pill-test">
+      <img src="http://localhost:5173/pill?1t=cute ?" alt="pill-test">
     </div>
 
   </div>
