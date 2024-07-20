@@ -1,1 +1,3 @@
-http://localhost:5173/pill?1t=salut%20les%20gars&1c=FFFFFF&1bc=FF000&2t=online&2c=ffffff&2bc=388019
+TODO: better reliable dynamic width
+TODO: images
+TODO: n-pills

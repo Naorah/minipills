@@ -31,9 +31,9 @@
   width: -moz-max-content;
   border-radius: 6px;
   font-size: 14px;
-  background-color: var(--yellow);
+  background-color: var(--color);
   box-shadow: 0px 0px 24px rgba(0, 0, 0, 0.2);
-  color: var(--back);
+  color: white;
   text-align: center;
   white-space: pre-wrap;
   transform: translate(-50%,  calc(0px - var(--arrow-size))) scale(0.5);
