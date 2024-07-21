@@ -1,9 +1,22 @@
+import { createCanvas } from 'canvas';
+
 export function getTextWidth(text, fontSize=12, fontFamily = 'Arial') {
-  let characterWidths = {};
-  const averageCharacterWidth = characterWidths[fontFamily] || 0.55;
-  // Calculer la largeur approximative du texte
-  const textWidth = text.length * fontSize * averageCharacterWidth;
-  return textWidth;
+  // Charger la police
+  try {
+    // Create a canvas element
+    const canvas = createCanvas(20000, 200); // width and height can be arbitrary
+    const context = canvas.getContext('2d');
+
+    // Set the font properties
+    context.font = `${fontSize}px ${fontFamily}`;
+
+    // Measure the text width
+    const metrics = context.measureText(text);
+    return metrics.width;
+  } catch (error) {
+    console.log(error);
+    return 0.55 * fontSize * text.length;
+  }
 }
 
 export function adjustColor(color, adjustment) {

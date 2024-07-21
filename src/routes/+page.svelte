@@ -29,14 +29,32 @@
     },
     {
       "text": "Change second color",
-      "button": "&2c=0d6e75",
-      "url_shard": "&2c=0d6e75",
+      "button": "&2c=667558",
+      "url_shard": "&2c=667558",
       "pushed": false
     },
     {
-      "text": "Change back color	",
+      "text": "Change back color",
       "button": "&2bc=dedede",
       "url_shard": "&2bc=dedede",
+      "pushed": false
+    },
+    {
+      "text": "Add shadows",
+      "button": "&s",
+      "url_shard": "&s",
+      "pushed": false
+    },
+    {
+      "text": "Add a logo",
+      "button": "&l=minipills",
+      "url_shard": "&l=minipills",
+      "pushed": false
+    },
+    {
+      "text": "Add logo color",
+      "button": "&lc=FFC460",
+      "url_shard": "&lc=FFC460",
       "pushed": false
     }
   ]
@@ -98,7 +116,16 @@
     </div>
 
     <h2 class="c-text mp-semi-title">
-      <div class="bolding mp-big-text">CUSTOMIZE</div> <span class="bg-text">anything with these</span> <span class="bolding">auto-generated</span> <span class="bg-text">pills !</span>
+      <div class="bolding mp-big-text">CUSTOMIZE</div> 
+      <div>
+        <span class="bg-text">anything with these</span>
+      </div>
+      <div>
+        <span class="bolding mp-big-text">AUTO-GENERATED</span>
+      </div>
+      <div>
+        <span class="bg-text">pills !</span>
+      </div>
     </h2>
 
     <img src="http://localhost:5173/pill?1t=Spread&1bc=a12613" alt="pill-test">

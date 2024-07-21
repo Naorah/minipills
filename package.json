@@ -16,6 +16,11 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@prisma/client": "^5.17.0",
+		"canvas": "^2.11.2",
+		"fs-extra": "^11.2.0",
+		"path": "^0.12.7",
+		"prisma": "^5.17.0",
 		"svelte-routing": "^2.13.0"
 	}
 }

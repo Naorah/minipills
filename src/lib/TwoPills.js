@@ -32,7 +32,10 @@ function getSecondPillData(width, height, radius) {
           Z`;
 }
 
-export function two_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color) {
+/**
+ * TWO PILLS GENERATOR
+ */
+export function two_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, logo, logo_color, shadow) {
   let stroke = 0;
   let strokeWidth = 0;
   //
@@ -65,6 +68,68 @@ export function two_pills(first_text, first_color, first_background_color, secon
   
   let width2;
   width2 = getTextWidth(second_text) + 10;
+
+  //
+  // ############# LOGO HANDLER #############
+  //
+  let logo_width = 24; // 24 is basic logo size
+  let logo_aimed_size = 0; // 18 is fit logo size
+  let logo_final;
+  let scaleFactor;
+  if (logo) {
+    logo_aimed_size = 18;
+    scaleFactor = logo_aimed_size/logo_width; 
+    width += logo_aimed_size + 5 // logo space + margin right
+    logo_final = `
+      <g transform="scale(${scaleFactor}) translate(${(((-width+-width2)/2) + logo_aimed_size)}, 3)">
+        ${logo.replace('<svg', `<svg fill="${logo_color}"`)}
+      </g>
+    `
+  }
+
+  //
+  // ############# SHADOW HANDLER #############
+  //
+  let logo_shadow_final;
+  let text_shadow1;
+  let text_shadow2;
+  if(shadow) {
+    let shadow_color1 = adjustColor(first_color, -100);
+    let shadow_color2 = adjustColor(second_color, -100);
+    text_shadow1 = `
+    <text
+    x="${(width/2) + logo_aimed_size/2}"
+    y="58%"
+    dominant-baseline="middle" 
+    text-anchor="middle" 
+    fill="${shadow_color1}"
+    font-size="12"
+    font-family="Arial"
+    >
+    ${first_text}
+    </text>
+    `
+    text_shadow2 = `
+    <text
+    x="${width + (width2 / 2)}"
+    y="58%"
+    dominant-baseline="middle" 
+    text-anchor="middle" 
+    fill="${shadow_color2}"
+    font-size="12"
+    font-family="Arial"
+    >
+    ${second_text}
+    </text>
+    `
+    if (logo) {
+      let logo_shadow_color = adjustColor(logo_color, -100);
+      logo_shadow_final = `
+      <g transform="scale(${scaleFactor}) translate(${(((-width+-width2)/2) + logo_aimed_size)}, 3.8)">
+        ${logo.replace('<svg', `<svg fill="${logo_shadow_color}"`)}
+      </g>`
+    }
+  }
   
   return `
     <svg width="${width+width2}" height="${height}" xmlns="http://www.w3.org/2000/svg">
@@ -84,8 +149,13 @@ export function two_pills(first_text, first_color, first_background_color, secon
         stroke="${stroke}" 
         stroke-width="${strokeWidth}" 
       />
+      
+      ${logo_shadow_final}
+      ${logo_final}
+
+      ${text_shadow1}
       <text 
-        x="${width / 2}"
+        x="${(width/2) + logo_aimed_size/2}"
         y="55%" 
         dominant-baseline="middle" 
         text-anchor="middle" 
@@ -103,6 +173,7 @@ export function two_pills(first_text, first_color, first_background_color, secon
         stroke-width="${strokeWidth}"
         transform="${`translate(${width}, 0)`}"
       />
+      ${text_shadow2}
       <text 
         x="${width + (width2 / 2)}"
         y="55%" 
