@@ -20,5 +20,5 @@ Thumbs.db
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-prisma/migration
+prisma/migrations
 prisma/dev.db
