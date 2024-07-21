@@ -107,6 +107,11 @@
     </div>
 
   </div>
+
+  <div class="mp-nav">
+    <a class="nav-btn" href="logo">Logos</a>
+    <a class="nav-btn" href="submit-logo">Submit new logo</a>
+  </div>
 </section>
 
 <section>

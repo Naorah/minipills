@@ -1,4 +1,4 @@
-TODO: new logo for minipills ( svg better )
+TODO: new logo for minipills ( svg better ) :tick:
 TODO: page Logo research
 TODO: page for Logo submission
 TODO: 3-pills

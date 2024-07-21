@@ -165,6 +165,24 @@ h2 {
   margin:0;
 }
 
+.mp-nav {
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+.nav-btn {
+  padding: 1rem 2rem 1rem 2rem;
+  background-color: #811d0d;
+  color: white;
+  text-decoration: none;
+  transition: 0.5s;
+  border-radius: 5px;
+}
+
+.nav-btn:hover {
+  background-color: var(--back);
+}
+
 /* ##### GRID ##### */
 
 .mp-grid-container {
