@@ -16,6 +16,7 @@ DONE: Iconify on svelte
 > CURRENT: page Logo research
 > CURRENT: scrap logo color for each
 > CURRENT: build a default pill for each logo
+> CURRENT: go to the top button
 
 TODO: 3 :page with popular pills
 TODO: 2 :page with pill generation charts over time & stats
