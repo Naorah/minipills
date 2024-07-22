@@ -14,15 +14,20 @@ datasource db {
 }
 
 model Logo {
-  id     Int    @id @default(autoincrement())
-  name   String @unique
-  logo   String @unique
+  id             Int        @id @default(autoincrement())
+  name           String     @unique
+  display_name   String     @unique
+  logo           String     @unique
+  createdAt      DateTime   @default(now())
+  color          String
 }
 
 model LogoSubmission {
   id            Int        @id @default(autoincrement())
   name          String     @unique
+  display_name  String     @unique
   logo          String     @unique
+  color         String
   discord       String
   createdAt     DateTime   @default(now())
   validatedAt   DateTime?

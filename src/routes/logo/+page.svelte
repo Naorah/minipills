@@ -7,6 +7,13 @@
   let displayed_data = data.icons.slice(0, 50);
   let toasted_snack = false;
   let scroll_value = 0;
+  let name_search = "";
+
+  $: if (name_search.length > 0) {
+    displayed_data = data.icons.filter(icon => icon.name.includes(name_search) || icon.display_name.includes(name_search));
+  } else {
+    displayed_data = data.icons.slice(0, 50);
+  }
 
   function scrolling()
   {
@@ -75,6 +82,14 @@
 
 <section class="bg-back">
   <div class="mp-container">
+    <div class="mp-search">
+      <div class="w-text">
+        Search bar
+      </div>
+      <div>
+        <input class="mp-input" bind:value={name_search}>
+      </div>
+    </div>
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="grid-container">
