@@ -5,8 +5,8 @@
   let steps = [
     {
       "text": "Add first text",
-      "button": "1t=MiniPill",
-      "url_shard": "1t=MiniPill",
+      "button": "1t=MiniPills",
+      "url_shard": "1t=MiniPills",
       "pushed": false
     },
     {

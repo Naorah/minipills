@@ -5,23 +5,28 @@ export const lazyLoad = (image) => {
     return;
   }
 
+  image.classList.add('loading');
+
   const loaded = () => {
     image.style.opacity = "1";
+    image.classList.remove('lazy');
+    image.classList.remove('loading');
   };
 
   const observer = new IntersectionObserver((entries, observer) => {
-    if (entries[0].isIntersecting) {
-      console.log('an image has loaded');
-      image.src = src;
-      image.removeAttribute('data-src');
-
-      if (image.complete) {
-        loaded();
-      } else {
-        image.addEventListener('load', loaded);
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        image.src = src;
+        image.removeAttribute('data-src');
+        
+        if (image.complete) {
+          loaded();
+        } else {
+          image.addEventListener('load', loaded);
+        }
+        observer.unobserve(image);
       }
-      observer.unobserve(image);
-    }
+    });
   });
 
   observer.observe(image);

@@ -17,6 +17,11 @@ html {
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+}
+
 body {
   padding: 0px;
   margin: 0px;

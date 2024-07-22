@@ -99,7 +99,7 @@ export function two_pills(first_text, first_color, first_background_color, secon
     text_shadow1 = `
     <text
     x="${(width/2) + logo_aimed_size/2}"
-    y="58%"
+    y="57%"
     dominant-baseline="middle" 
     text-anchor="middle" 
     fill="${shadow_color1}"
@@ -112,7 +112,7 @@ export function two_pills(first_text, first_color, first_background_color, secon
     text_shadow2 = `
     <text
     x="${width + (width2 / 2)}"
-    y="58%"
+    y="57%"
     dominant-baseline="middle" 
     text-anchor="middle" 
     fill="${shadow_color2}"

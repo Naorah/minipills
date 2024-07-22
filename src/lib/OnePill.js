@@ -57,7 +57,7 @@ export function one_pill(first_text, first_color, first_background_color, logo, 
     text_shadow = `
     <text
     x="${(width/2) + logo_aimed_size/2}"
-    y="58%"
+    y="57%"
     dominant-baseline="middle" 
     text-anchor="middle" 
     fill="${text_shadow_color}"
