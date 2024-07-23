@@ -34,6 +34,14 @@ export const lazyLoad = (image) => {
   return {
     destroy() {
       image.removeEventListener('load', loaded);
+    },
+    reload(newSrc) {
+      console.log('Reloading image', image);
+      src = newSrc || src;
+      if (!image.src) {
+        image.setAttribute('data-src', src);
+      }
+      observeImage();
     }
   };
 };

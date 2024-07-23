@@ -1,6 +1,7 @@
 <script>
-  let basic_link="http://localhost:5173/pill?"
-  let pill_link ="http://localhost:5173/pill?"
+  import { PUBLIC_PILL_URL } from '$env/static/public';
+  let basic_link= PUBLIC_PILL_URL
+  let pill_link = PUBLIC_PILL_URL
 
   let steps = [
     {
@@ -97,20 +98,23 @@
     </div>
 
     <div>
-      <img src="http://localhost:5173/pill?1t=Pills" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}1t=Pills" alt="pill-test">
 
-      <img src="http://localhost:5173/pill?1t=looks" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}1t=looks" alt="pill-test">
     
-      <img src="http://localhost:5173/pill?1t=really" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}1t=really" alt="pill-test">
   
-      <img src="http://localhost:5173/pill?1t=cute ?" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}1t=cute ?" alt="pill-test">
     </div>
 
   </div>
 
+  <!-- LOGO LINKS -->
   <div class="mp-nav">
+    <!-- DOCUMENTATION -->
+    <a class="nav-btn" href="docs">Documentation</a>
+    <!-- TO THE LOGO PAGE -->
     <a class="nav-btn" href="logo">Logos</a>
-    <a class="nav-btn" href="submit-logo">Submit new logo</a>
   </div>
 </section>
 
@@ -133,13 +137,13 @@
       </div>
     </h2>
 
-    <img src="http://localhost:5173/pill?1t=Spread&1bc=a12613" alt="pill-test">
+    <img src="{PUBLIC_PILL_URL}1t=Spread&1bc=a12613" alt="pill-test">
 
-    <img src="http://localhost:5173/pill?1t=Colors&1bc=13a155" alt="pill-test">
+    <img src="{PUBLIC_PILL_URL}1t=Colors&1bc=13a155" alt="pill-test">
 
-    <img src="http://localhost:5173/pill?1t=Anywhere&1c=f0be1a" alt="pill-test">
+    <img src="{PUBLIC_PILL_URL}1t=Anywhere&1c=f0be1a" alt="pill-test">
 
-    <img src="http://localhost:5173/pill?1t=Everywhere&1c=e210e6" alt="pill-test">
+    <img src="{PUBLIC_PILL_URL}1t=Everywhere&1c=e210e6" alt="pill-test">
   </div>
 </section>
 
@@ -156,11 +160,11 @@
       </div>
     </div>
 
-    <img src="http://localhost:5173/pill?1t=I really&1bc=a12613" alt="pill-test">
+    <img src="{PUBLIC_PILL_URL}1t=I really&1bc=a12613" alt="pill-test">
 
-    <img src="http://localhost:5173/pill?1t=want&1bc=a12613" alt="pill-test">
+    <img src="{PUBLIC_PILL_URL}1t=want&1bc=a12613" alt="pill-test">
 
-    <img src="http://localhost:5173/pill?1t=to test !&1bc=a12613" alt="pill-test">
+    <img src="{PUBLIC_PILL_URL}1t=to test !&1bc=a12613" alt="pill-test">
 
     <h2 class="mp-how">Generate more pills</h2>
 
@@ -179,7 +183,7 @@
       </div>
     </div>
 
-    <h2 class="mp-how">Let's build a pill together !</h2>
+    <h2 class="mp-how">Let's build a pill together</h2>
 
     <div class="w-text">
       <div class="mp-mb">
@@ -224,27 +228,18 @@
         {#if pill_link.startsWith(`${basic_link}`)}
           <img src={pill_link} alt="pill-test">
         {:else}
-          <img src="http://localhost:5173/pill?1t=Wrong url&1bc=a12613" alt="pill-test">
+          <img src="{PUBLIC_PILL_URL}1t=Wrong url&1bc=a12613" alt="pill-test">
         {/if}
       </div>
+      
       <div>
         <input class="mp-input" bind:value={pill_link}/>
       </div>
+
       <div>
         <button on:click={() => copyToPaperClip(pill_link)} class="mp-white-button">{copy_caption}</button>
         <button on:click={() => reset_link()} class="mp-red-button">RESET</button>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="d-back">
-  <div class="mp-container">
-    <div class="w-text mp-description">
-      More ?
-    </div>
-    <a href="https://github.com/Naorah/minipills" target="_blank">
-      <img src="http://localhost:5173/pill?1t=Github&1bc=24292e" alt="pill-test">
-    </a>
   </div>
 </section>

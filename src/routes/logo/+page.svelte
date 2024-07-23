@@ -1,8 +1,8 @@
 <script>
-  import { lazyLoad } from '$lib/LazyLoad.js'
+  import FadeAppear from '$lib/components/FadeAppear.svelte';
+  import { PUBLIC_PILL_URL } from '$env/static/public';
   import Icon from '@iconify/svelte';
   export let data;
-  let pill_link="http://localhost:5173/pill"
   let nb_icon_displayed = 50
   let displayed_data = data.icons.slice(0, 50);
   let toasted_snack = false;
@@ -10,13 +10,23 @@
   let name_search = "";
 
   $: if (name_search.length > 0) {
-    displayed_data = data.icons.filter(icon => icon.name.includes(name_search) || icon.display_name.includes(name_search));
+    displayed_data = null;
+    let new_icons = data.icons.filter(icon => (icon.name.toUpperCase()).startsWith(name_search.toUpperCase()) || (icon.display_name.toUpperCase()).startsWith(name_search.toUpperCase()));
+    displayed_data = new_icons;
   } else {
-    displayed_data = data.icons.slice(0, 50);
+    displayed_data = null;
+    let new_icons = data.icons.slice(0, 50);
+    displayed_data = new_icons;
   }
 
   function scrolling()
   {
+    console.log(name_search);
+    // Guard if we're in search process
+    if (name_search !== "") {
+      return;
+    }
+    // Else load while scrolling for fluid nav
     scroll_value += 1;
     if (scroll_value == 5 && nb_icon_displayed < data.icons.length) {
       nb_icon_displayed + 50 < data.icons.length ? nb_icon_displayed += 50 : nb_icon_displayed = data.icons.length;
@@ -66,9 +76,9 @@
     <h1 class="mp-h1">ALL LOGOS</h1>
 
     <div>
-      <img src="http://localhost:5173/pill?1t=All" alt="pill-test">
-      <img src="http://localhost:5173/pill?1t=available" alt="pill-test">
-      <img src="http://localhost:5173/pill?1t=logos" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}1t=All" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}1t={data.icons.length}" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}1t=logos" alt="pill-test">
     </div>
   </div>
 
@@ -80,45 +90,62 @@
   </div>
 </section>
 
-<section class="bg-back">
-  <div class="mp-container">
+<section class="bg-back min-screen">
+  <div class="mp-search-container">
     <div class="mp-search">
-      <div class="w-text">
+      <div class="w-text mp-align-left">
         Search bar
       </div>
       <div>
         <input class="mp-input" bind:value={name_search}>
       </div>
     </div>
+  </div>
+  <div class="mp-container">
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="grid-container">
       {#if displayed_data}
         {#each displayed_data as logo}
-        <div class="grid-item logo-pill">
-          <div class="mp-logo-name" on:click={() => copyToPaperClip(logo.name)}>
-            {logo.name}
+
+        <div>
+          <div class="grid-item logo-pill">
+
+            <div class="mp-logo-name" on:click={() => copyToPaperClip(logo.name)}>
+              {logo.name}
+            </div>
+
+            <div on:click={() => copyToPaperClip(logo.logo)} class="svg-zone">
+              <FadeAppear>
+                <img class="svg-display" src={`data:image/svg+xml;utf8,${logo.logo}`} alt="svg for {logo.name}"/>
+              </FadeAppear>
+            </div>
+
+            <div class="mp-display-name">
+              {logo.display_name}
+            </div>
+
           </div>
-          <div on:click={() => copyToPaperClip(logo.logo)} class="svg-zone">
-            <img class="svg-display lazy" use:lazyLoad data-src={`data:image/svg+xml;utf8,${logo.logo}`} alt="svg for {logo.name}"/>
-          </div>
+
           <div class="bottom-pill w-text grid-mp-actions">
             <div class="mp-logo-action download-pill" on:click={downloadFile(logo.logo, logo.name+".svg")}>
               <Icon width=25 icon="material-symbols:download" />
             </div>
-            <div class="mp-logo-action color-pill">
+            <div class="mp-logo-action color-pill" on:click={() => copyToPaperClip(logo.color)}>
               <Icon width=25 icon="material-symbols:colorize" />
             </div>
-            <a class="mp-logo-action get-pill" target="_blank" href="{pill_link}?1t={logo.name}&l={logo.name}&s">
+            <a class="mp-logo-action get-pill" target="_blank" href="{PUBLIC_PILL_URL}1t={logo.display_name}&l={logo.name}&1bc={logo.color.replace('#', '')}&s">
               <Icon width=25 icon="material-symbols:pill-outline" />
             </a>
           </div>
         </div>
         {/each}
       {:else}
+
       <div>
         Loading...
       </div>
+
       {/if}
     </div>
     <div id="snackbar" class="{toasted_snack ? 'show' : ''}">Copied to your paperclip !</div>
@@ -126,6 +153,15 @@
 </section>
 
 <style>
+
+  .mp-display-name {
+    margin-top: auto;
+    margin-left: 1rem;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
 
   .download-pill {
     background-color: var(--color);
@@ -146,7 +182,7 @@
   }
 
   .mp-logo-action {
-    padding-top: 0.3rem;
+    padding-top: 0.5rem;
     padding-bottom: 0.2rem;
     transition: 0.3s;
   }
@@ -163,12 +199,17 @@
   }
 
   .mp-logo-name:hover {
-    color: rgb(65, 65, 65);
+    color: #474747;
+    opacity: 50%;
     cursor: pointer;
   }
 
   .logo-pill {
-    border-radius: 15px;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     padding-top: 1rem;
   }
 
@@ -183,6 +224,7 @@
   }
 
   .grid-item {
+    position: relative;
     background-color: #ddd;
     text-align: center;
   }
@@ -207,54 +249,61 @@
     transition: 1s;
   }
 
-  .svg-display.lazy {
-    opacity: 0;
-    transition: opacity 1s;
-  }
-
-  .svg-display.lazy.loading {
-    display: none;
+  .min-screen {
+    min-height: 100vh;
   }
 
   @media (max-width: 499px) {
     .grid-container {
+      row-gap: 40px;
       grid-template-columns: 1fr;
     }
   }
 
   @media (min-width: 550px) and (max-width: 799px) {
     .grid-container {
+      gap: 20px;
+      row-gap: 20px;
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
   @media (min-width: 800px) and (max-width: 1049px) {
     .grid-container {
+      gap: 20px;
+      row-gap: 20px;
       grid-template-columns: repeat(3, 1fr);
     }
   }
 
   @media (min-width: 1050px) and (max-width: 1349px) {
     .grid-container {
+      gap: 20px;
+      row-gap: 20px;
       grid-template-columns: repeat(4, 1fr);
     }
   }
 
   @media (min-width: 1350px) and (max-width: 1599px) {
     .grid-container {
+      gap: 20px;
+      row-gap: 20px;
       grid-template-columns: repeat(5, 1fr);
     }
   }
 
   @media (min-width: 1600px) and (max-width: 1799px) {
     .grid-container {
+      gap: 30px;
+      row-gap: 30px;
       grid-template-columns: repeat(6, 1fr);
     }
   }
 
   @media (min-width: 1800px) and (max-width: 2000px) {
     .grid-container {
-      gap: 20px;
+      gap: 40px;
+      row-gap: 40px;
       grid-template-columns: repeat(7, 1fr);
     }
   }
@@ -262,6 +311,7 @@
   @media (min-width: 2000px) {
     .grid-container {
       gap: 40px;
+      row-gap: 40px;
       grid-template-columns: repeat(8, 1fr);
     }
   }

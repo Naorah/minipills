@@ -1,6 +1,7 @@
 // GENERATOR IMPORT
 import { one_pill } from '$lib/OnePill.js';
 import { two_pills } from '$lib/TwoPills.js';
+import { three_pills } from '$lib/ThreePills.js';
 // PRISMA IMPORT
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
@@ -43,7 +44,8 @@ export async function GET({ url }) {
   // If errors
   let error = false;
   // If one or two pills
-  let is_one_pill = true;
+  let is_one_pill = false;
+  let is_two_pill = false;
   // First pill
   let first_text = url.searchParams.get('1t');
   let first_color = url.searchParams.get('1c');
@@ -53,6 +55,11 @@ export async function GET({ url }) {
   let second_text = url.searchParams.get('2t');
   let second_color = url.searchParams.get('2c');
   let second_background_color = url.searchParams.get('2bc');
+
+  // Third pill
+  let third_text = url.searchParams.get('3t');
+  let third_color = url.searchParams.get('3c');
+  let third_background_color = url.searchParams.get('3bc');
 
   // Logo
   let logo_name = url.searchParams.get('l');
@@ -73,24 +80,28 @@ export async function GET({ url }) {
   if (!first_text) {
     error = true
   }
-  if (first_text && second_text) {
-    is_one_pill = false
+  if (first_text && !second_text) {
+    is_one_pill = true;
+  } else if (first_text && second_text && !third_text) {
+    is_two_pill = true;
   }
   if (!isHexColor(first_background_color)) {
     first_background_color = "212121";
-    // console.log('no first background color')
   }
   if (!isHexColor(first_color)) {
     first_color = "ffffff";
-    // console.log('no first color')
   }
   if (!isHexColor(second_background_color)) {
     second_background_color = "a12613";
-    // console.log('no second background color')
   }
   if (!isHexColor(second_color)) {
     second_color = "ffffff";
-    // console.log('no second color')
+  }
+  if (!isHexColor(third_background_color)) {
+    third_background_color = "212121";
+  }
+  if (!isHexColor(third_color)) {
+    third_color = "ffffff";
   }
 
   // SVG generator
@@ -101,8 +112,10 @@ export async function GET({ url }) {
     svgContent = two_pills("404", "ffffff", "212121", "Pill spreader misused", "ffffff", "a12613");
   } else if (is_one_pill) {
     svgContent = one_pill(first_text, first_color, first_background_color, logo_svg, logo_color, shadow);
-  } else {
+  } else if (is_two_pill) {
     svgContent = two_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, logo_svg, logo_color, shadow);
+  } else {
+    svgContent = three_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, third_text, third_color, third_background_color, logo_svg, logo_color, shadow);
   }
 
   // return the svg
