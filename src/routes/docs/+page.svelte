@@ -125,9 +125,8 @@
   </div>
 
   <div class="mp-nav">
-    <a class="nav-btn" href="/">
-      Home
-    </a>
+    <a class="nav-btn" href="/">Home</a>
+    <a class="nav-btn" href="logo">Logos</a>
   </div>
 </section>
 

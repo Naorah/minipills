@@ -1,5 +1,5 @@
 export const lazyLoad = (image) => {
-  const src = image.getAttribute('data-src');
+  let src = image.getAttribute('data-src');
 
   if (!src) {
     return;

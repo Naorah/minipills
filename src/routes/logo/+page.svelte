@@ -1,42 +1,58 @@
 <script>
   import FadeAppear from '$lib/components/FadeAppear.svelte';
+  import { onMount } from 'svelte';
+  import { writable } from 'svelte/store';
   import { PUBLIC_PILL_URL } from '$env/static/public';
   import Icon from '@iconify/svelte';
+  // exported data
   export let data;
-  let nb_icon_displayed = 50
-  let displayed_data = data.icons.slice(0, 50);
+  
+  // logo list
+  const logos = writable([]);
+
+  // loading and list parameters
+  let isLoading = true;
+  let offset = 0;
+  let limit = 50;
+
+  // snacks scroll
   let toasted_snack = false;
   let scroll_value = 0;
+
+  // search box
   let name_search = "";
 
-  $: if (name_search.length > 0) {
-    displayed_data = null;
-    let new_icons = data.icons.filter(icon => (icon.name.toUpperCase()).startsWith(name_search.toUpperCase()) || (icon.display_name.toUpperCase()).startsWith(name_search.toUpperCase()));
-    displayed_data = new_icons;
-  } else {
-    displayed_data = null;
-    let new_icons = data.icons.slice(0, 50);
-    displayed_data = new_icons;
-  }
-
-  function scrolling()
-  {
-    console.log(name_search);
-    // Guard if we're in search process
-    if (name_search !== "") {
-      return;
-    }
-    // Else load while scrolling for fluid nav
-    scroll_value += 1;
-    if (scroll_value == 5 && nb_icon_displayed < data.icons.length) {
-      nb_icon_displayed + 50 < data.icons.length ? nb_icon_displayed += 50 : nb_icon_displayed = data.icons.length;
-      displayed_data = data.icons.slice(0, nb_icon_displayed);
-      scroll_value = 0;
+  // update the name_search when updated
+  $: {
+    if (name_search !== undefined) {
+      console.log(name_search);
+      offset = 0;
+      logos.set([]);
+      loadLogos();
     }
   }
 
   //
-  // copyToPaperClip : function : copie vers le presse papier
+  // scrolling : function
+  // loading next data while scrolling for the best fluid experience
+  //
+  function scrolling()
+  {
+    // Guard if we're in search process
+    if (name_search !== "") return;
+    if (isLoading) return;
+    // Else load while scrolling for fluid nav
+    scroll_value += 1;
+    if (scroll_value == 5) {
+      offset += limit;
+      loadLogos();
+      scroll_value = 0
+    }
+  }
+
+  //
+  // copyToPaperClip : function : copy the text param into the pperclip
+  // @param text : str : text to put into the paperclip
   //
   function copyToPaperClip(text) {
     navigator.clipboard.writeText(text).then(
@@ -55,6 +71,8 @@
 
   //
   // Download svg file
+  // @param : textData : file content
+  // @param : fileName : file name when downloaded
   //
   function downloadFile(textData, fileName) {
     const blob = new Blob([textData], { type: 'text/plain' });
@@ -67,6 +85,38 @@
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   }
+
+  //
+  // loadLogos : function : logo loading with offset for the best fluid experience
+  //
+  async function loadLogos(){
+    if (isLoading) return;
+    //isLoading = true;
+    try {
+      const response = await fetch(`/api/logo?offset=${offset}&limit=${limit}&startswith=${name_search}`);
+      if (response.ok) {
+        const data = await response.json();
+        if (data.length > 0) {
+          logos.update(existingLogos => [...existingLogos, ...data]);
+        } else {
+          // No more records to load
+          offset -= limit; // Adjust offset back
+        }
+      } else {
+        console.error('Failed to get logos');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    } finally {
+      //isLoading = false
+    }
+  };
+
+  // load the first logos at start !
+  onMount(() => {
+    isLoading = false;
+    loadLogos();
+  });
 </script>
 
 <svelte:window on:scroll={scrolling} />
@@ -76,17 +126,13 @@
     <h1 class="mp-h1">ALL LOGOS</h1>
 
     <div>
-      <img src="{PUBLIC_PILL_URL}1t=All" alt="pill-test">
-      <img src="{PUBLIC_PILL_URL}1t={data.icons.length}" alt="pill-test">
-      <img src="{PUBLIC_PILL_URL}1t=logos" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}1t=Explore&2t={data.nb_logo.count}&3t=logos" alt="pill-test">
     </div>
   </div>
 
   <div class="mp-nav">
-    <a class="nav-btn" href="/">
-      Home
-    </a>
-    <a class="nav-btn" href="submit-logo">Submit new logo</a>
+    <a class="nav-btn" href="/">Home</a>
+    <a class="nav-btn" href="submit-logo">Add new logo</a>
   </div>
 </section>
 
@@ -105,16 +151,10 @@
     <!-- svelte-ignore a11y-no-static-element-interactions -->
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="grid-container">
-      {#if displayed_data}
-        {#each displayed_data as logo}
 
-        <div>
-          <div class="grid-item logo-pill">
-
-            <div class="mp-logo-name" on:click={() => copyToPaperClip(logo.name)}>
-              {logo.name}
-            </div>
-
+      {#each $logos as logo}
+        <div class="grid-item">
+          <div class="logo-pill">
             <div on:click={() => copyToPaperClip(logo.logo)} class="svg-zone">
               <FadeAppear>
                 <img class="svg-display" src={`data:image/svg+xml;utf8,${logo.logo}`} alt="svg for {logo.name}"/>
@@ -134,21 +174,18 @@
             <div class="mp-logo-action color-pill" on:click={() => copyToPaperClip(logo.color)}>
               <Icon width=25 icon="material-symbols:colorize" />
             </div>
+            <div class="mp-logo-action color-pill" on:click={() => copyToPaperClip(logo.name)}>
+              <Icon width=25 icon="material-symbols:tag" />
+            </div>
             {#if logo.color}
-              <a class="mp-logo-action get-pill" target="_blank" href="{PUBLIC_PILL_URL}1t={logo.display_name}&l={logo.name}&1bc={logo.color.replace('#', '')}&s">
+              <a class="mp-logo-action get-pill" target="_blank" href="{PUBLIC_PILL_URL}1t={logo.display_name}&l={logo.name}&1bc={logo.color.replace('#', '')}">
                 <Icon width=25 icon="material-symbols:pill-outline" />
               </a>
             {/if}
           </div>
         </div>
-        {/each}
-      {:else}
+      {/each}
 
-      <div>
-        Loading...
-      </div>
-
-      {/if}
     </div>
     <div id="snackbar" class="{toasted_snack ? 'show' : ''}">Copied to your paperclip !</div>
   </div>
@@ -158,9 +195,10 @@
 
   .mp-display-name {
     margin-top: auto;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.2rem;
     text-align: left;
-    margin-bottom: 0.5rem;
     font-weight: bold;
     font-size: 1.2rem;
   }
@@ -195,11 +233,6 @@
     cursor: pointer;
   }
 
-  .mp-logo-name {
-    font-size: 1.2rem;
-    transition: 0.2s;
-  }
-
   .mp-logo-name:hover {
     color: #474747;
     opacity: 50%;
@@ -210,31 +243,30 @@
     height: 80%;
     display: flex;
     flex-direction: column;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
     padding-top: 1rem;
   }
 
   .grid-container {
     display: grid;
-    gap: 10px;
   }
 
   .grid-mp-actions {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .grid-item {
     position: relative;
     background-color: #ddd;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     text-align: center;
   }
 
   .svg-zone {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    height: 100px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 80px;
     transition: 0.2s;
   }
 
@@ -246,23 +278,26 @@
   }
   
   .svg-display {
-    height: 100px;
+    height: 80px;
+    width: 80px;
     opacity: 100%;
     transition: 1s;
   }
 
   .min-screen {
     min-height: 100vh;
+    padding-bottom: 2rem;
   }
 
   @media (max-width: 499px) {
     .grid-container {
+      gap: 20px;
       row-gap: 40px;
       grid-template-columns: 1fr;
     }
   }
 
-  @media (min-width: 550px) and (max-width: 799px) {
+  @media (min-width: 500px) and (max-width: 799px) {
     .grid-container {
       gap: 20px;
       row-gap: 20px;

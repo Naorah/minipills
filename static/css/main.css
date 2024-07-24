@@ -178,11 +178,6 @@ h2 {
   margin:0;
 }
 
-.mp-nav {
-  text-align: center;
-  padding-bottom: 2rem;
-}
-
 .nav-btn {
   padding: 1rem 2rem 1rem 2rem;
   background-color: #811d0d;
@@ -204,6 +199,11 @@ h2 {
   gap: 10px;
   margin-right: 30%;
   margin-left: 30%;
+}
+
+.mp-nav {
+  text-align: center;
+  padding-bottom: 2rem;
 }
 
 .mp-red-button {
