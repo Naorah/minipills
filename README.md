@@ -27,14 +27,16 @@
 - DONE: Page for Logo submission
 - DONE: improve the logo loading with a new request each time
 
+> CURRENT: png pill
+
 > CURRENT: Logo submission current list
 > CURRENT: minipills discord server
 > CURRENT: minipills discord webhook with validated & added icons
 > CURRENT: minipills discord on footer
 
-- NEXT: Logo only with color
-
 > ALWAYS CURRENT: Add more logos
+
+- NEXT: Logo only with color
 
 - TODO: 3 :page with popular pills
 - TODO: 2 :page with pill generation charts over time & stats

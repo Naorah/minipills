@@ -2,10 +2,10 @@
 import { one_pill } from '$lib/OnePill.js';
 import { two_pills } from '$lib/TwoPills.js';
 import { three_pills } from '$lib/ThreePills.js';
+
 // PRISMA IMPORT
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
-
 
 //
 // isHexColor : function : tell if the given color is hexadecimal

@@ -1,6 +1,6 @@
 <script>
   import { onMount } from 'svelte';
-  import { PUBLIC_PILL_URL } from '$env/static/public';
+  import { PUBLIC_PILL_URL, PUBLIC_GITHUB_URL, PUBLIC_DISCORD_URL, PUBLIC_DONATION_URL } from '$env/static/public';
 	
 	let now = new Date(), month, day, year;
 	let dateString;
@@ -27,13 +27,13 @@
       Mini Pills by Naorah
     </div>
     <!-- Info pills -->
-    <a href="https://github.com/Naorah/minipills" target="_blank">
+    <a href="{ PUBLIC_GITHUB_URL }" target="_blank">
       <img src="{ PUBLIC_PILL_URL }1t=Github&1bc=24292e&l=github" alt="pill-test">
     </a>
-    <a href="https://github.com/Naorah/minipills" target="_blank">
+    <a href="{ PUBLIC_DISCORD_URL }" target="_blank">
       <img src="{ PUBLIC_PILL_URL }1t=Discord&1bc=5865F2&l=discord" alt="pill-test">
     </a>
-    <a href="https://github.com/Naorah/minipills" target="_blank">
+    <a href="{ PUBLIC_DONATION_URL }" target="_blank">
       <img src="{ PUBLIC_PILL_URL }1t=Donate&l=paypal&1bc=003087" alt="pill-test">
     </a>
     <!-- Free use -->
