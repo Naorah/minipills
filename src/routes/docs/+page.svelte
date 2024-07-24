@@ -35,7 +35,7 @@
       required: false,
       default: "",
       title: "Second text",
-      description: "Second text of the pill. If it's a double pill, then it's the text on the left side.",
+      description: "Second text of the pill.",
       example: "&2t=on a road",
     },
     {
@@ -62,7 +62,7 @@
       required: false,
       default: "",
       title: "Third text",
-      description: "Third text of the pill. If it's a double pill, then it's the text on the left side.",
+      description: "Third text of the pill.",
       example: "&3t=trip",
     },
     {

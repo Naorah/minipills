@@ -16,7 +16,7 @@ datasource db {
 model Logo {
   id             Int        @id @default(autoincrement())
   name           String     @unique
-  display_name   String     @default("")
+  display_name   String
   logo           String     @unique
   createdAt      DateTime   @default(now())
   color          String     @default("#00000")

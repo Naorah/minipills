@@ -134,9 +134,11 @@
             <div class="mp-logo-action color-pill" on:click={() => copyToPaperClip(logo.color)}>
               <Icon width=25 icon="material-symbols:colorize" />
             </div>
-            <a class="mp-logo-action get-pill" target="_blank" href="{PUBLIC_PILL_URL}1t={logo.display_name}&l={logo.name}&1bc={logo.color.replace('#', '')}&s">
-              <Icon width=25 icon="material-symbols:pill-outline" />
-            </a>
+            {#if logo.color}
+              <a class="mp-logo-action get-pill" target="_blank" href="{PUBLIC_PILL_URL}1t={logo.display_name}&l={logo.name}&1bc={logo.color.replace('#', '')}&s">
+                <Icon width=25 icon="material-symbols:pill-outline" />
+              </a>
+            {/if}
           </div>
         </div>
         {/each}

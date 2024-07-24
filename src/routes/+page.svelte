@@ -1,5 +1,6 @@
 <script>
   import { PUBLIC_PILL_URL } from '$env/static/public';
+  import { lazyLoad } from '$lib/LazyLoad.js'
   let basic_link= PUBLIC_PILL_URL
   let pill_link = PUBLIC_PILL_URL
 
@@ -98,13 +99,13 @@
     </div>
 
     <div>
-      <img src="{PUBLIC_PILL_URL}1t=Pills" alt="pill-test">
+      <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=Pills" alt="pill-test">
 
-      <img src="{PUBLIC_PILL_URL}1t=looks" alt="pill-test">
+      <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=looks" alt="pill-test">
     
-      <img src="{PUBLIC_PILL_URL}1t=really" alt="pill-test">
+      <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=really" alt="pill-test">
   
-      <img src="{PUBLIC_PILL_URL}1t=cute ?" alt="pill-test">
+      <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=cute ?" alt="pill-test">
     </div>
 
   </div>
@@ -121,7 +122,7 @@
 <section>
   <div class="mp-container">
     <div>
-      <img class="brand-img" src="/favicon.png" alt="pill-test">
+      <img use:lazyLoad class="brand-img" src="/favicon.png" alt="pill-test">
     </div>
 
     <h2 class="c-text mp-semi-title">
@@ -137,13 +138,13 @@
       </div>
     </h2>
 
-    <img src="{PUBLIC_PILL_URL}1t=Spread&1bc=a12613" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=Spread&1bc=a12613" alt="pill-test">
 
-    <img src="{PUBLIC_PILL_URL}1t=Colors&1bc=13a155" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=Colors&1bc=13a155" alt="pill-test">
 
-    <img src="{PUBLIC_PILL_URL}1t=Anywhere&1c=f0be1a" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=Anywhere&1c=f0be1a" alt="pill-test">
 
-    <img src="{PUBLIC_PILL_URL}1t=Everywhere&1c=e210e6" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=Everywhere&1c=e210e6" alt="pill-test">
   </div>
 </section>
 
@@ -160,11 +161,11 @@
       </div>
     </div>
 
-    <img src="{PUBLIC_PILL_URL}1t=I really&1bc=a12613" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=I really&1bc=a12613" alt="pill-test">
 
-    <img src="{PUBLIC_PILL_URL}1t=want&1bc=a12613" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=want&1bc=a12613" alt="pill-test">
 
-    <img src="{PUBLIC_PILL_URL}1t=to test !&1bc=a12613" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=to test !&1bc=a12613" alt="pill-test">
 
     <h2 class="mp-how">Generate more pills</h2>
 
