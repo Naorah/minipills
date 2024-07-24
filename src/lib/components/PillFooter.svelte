@@ -28,7 +28,13 @@
     </div>
     <!-- Info pills -->
     <a href="https://github.com/Naorah/minipills" target="_blank">
-      <img src="{ PUBLIC_PILL_URL }1t=Github&1bc=24292e" alt="pill-test">
+      <img src="{ PUBLIC_PILL_URL }1t=Github&1bc=24292e&l=github" alt="pill-test">
+    </a>
+    <a href="https://github.com/Naorah/minipills" target="_blank">
+      <img src="{ PUBLIC_PILL_URL }1t=Discord&1bc=5865F2&l=discord" alt="pill-test">
+    </a>
+    <a href="https://github.com/Naorah/minipills" target="_blank">
+      <img src="{ PUBLIC_PILL_URL }1t=Donate&l=paypal&1bc=003087" alt="pill-test">
     </a>
     <!-- Free use -->
     <div class="w-text">Free Use {dateString}</div>

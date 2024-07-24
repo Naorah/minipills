@@ -78,23 +78,33 @@
     <form on:submit={submitLogo}>
       <label class="w-text">
         Logo tag:
-        <input class="mp-input-static" type="text" bind:value={name} required />
+        <div>
+          <input class="mp-input-static" type="text" bind:value={name} required />
+        </div>
       </label>
       <label class="w-text">
         Display Name:
-        <input class="mp-input-static" type="text" bind:value={display_name} required />
+        <div>
+          <input class="mp-input-static" type="text" bind:value={display_name} required />
+        </div>
       </label>
       <label class="w-text">
         Logo file (svg):
-        <input class="mp-input-static" type="file" accept=".svg" on:change={(e) => logo = e.target.files[0]} required />
+        <div>
+          <input class="mp-input-static" type="file" accept=".svg" on:change={(e) => logo = e.target.files[0]} required />
+        </div>
       </label>
       <label class="w-text">
         Brand color:
-        <input class="mp-input-static" type="text" bind:value={color} required />
+        <div>
+          <input class="mp-input-static" type="text" bind:value={color} required />
+        </div>
       </label>
       <label class="w-text">
         Your discord: (optionnal)
-        <input class="mp-input-static" type="text" bind:value={discord} />
+        <div>
+          <input class="mp-input-static" type="text" bind:value={discord} />
+        </div>
       </label>
       <button type="submit">Submit</button>
     </form>

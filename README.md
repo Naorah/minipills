@@ -24,9 +24,15 @@
 - DONE: 3-pills
 - DONE: Csrf-token for submission
 - DONE: Submission creation
+- DONE: Page for Logo submission
+- DONE: improve the logo loading with a new request each time
 
-> CURRENT: Page for Logo submission
 > CURRENT: Logo submission current list
+> CURRENT: minipills discord server
+> CURRENT: minipills discord webhook with validated & added icons
+> CURRENT: minipills discord on footer
+
+- NEXT: Logo only with color
 
 > ALWAYS CURRENT: Add more logos
 
@@ -34,5 +40,6 @@
 - TODO: 2 :page with pill generation charts over time & stats
 - TODO: 1 :page with pill generation complete tutorial & generators ( 1pill 2pills 3pills shadow logo )
 - TODO: 0 :clean up code for generation now it works well
-- TODO: 1 :Logo only with color
-- TODO: 1 :improve the logo loading with a new request each time
+- TODO: 0 :responsive nice menu
+- TODO: 3 :donate button
+
