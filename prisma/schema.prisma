@@ -24,7 +24,7 @@ model Logo {
 
 model LogoSubmission {
   id            Int        @id @default(autoincrement())
-  name          String     @unique
+  name          String
   display_name  String
   logo          String     @unique
   color         String

@@ -2,18 +2,14 @@
 import { one_pill } from '$lib/OnePill.js';
 import { two_pills } from '$lib/TwoPills.js';
 import { three_pills } from '$lib/ThreePills.js';
+import { premadePill } from '$lib/PremadePill.js';
+
+// isHexColor
+import { isHexColor } from '$lib/ColorUtil.js'
 
 // PRISMA IMPORT
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
-
-//
-// isHexColor : function : tell if the given color is hexadecimal
-//
-function isHexColor(str) {
-  const hexColorPattern = /^([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
-  return hexColorPattern.test(str);
-}
 
 async function getLogoByName(name) {
   try {
@@ -65,6 +61,18 @@ export async function GET({ url }) {
   let logo_name = url.searchParams.get('l');
   let logo_color = url.searchParams.get('lc');
   let logo_svg;
+
+  // Premade
+  let premade = url.searchParams.get("premade")
+  if (premade) {
+    const pill = await premadePill(premade);
+    // return the svg
+    return new Response(pill, {
+      headers: {
+        'Content-Type': 'image/svg+xml'
+      }
+    });
+  }
 
   // Properties
   let shadow = url.searchParams.get('s') != null ? true : false;

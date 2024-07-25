@@ -48,3 +48,11 @@ export function adjustColor(color, adjustment) {
 
   return rgbToHex(rAdjusted, gAdjusted, bAdjusted);
 }
+
+//
+// isHexColor : function : tell if the given color is hexadecimal
+//
+export function isHexColor(str) {
+  const hexColorPattern = /^([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
+  return hexColorPattern.test(str);
+}
