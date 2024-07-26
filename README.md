@@ -32,19 +32,19 @@
 - DONE: png pill
 - DONE: Logo submission current list
 - DONE: minipills discord webhook with validated message on discord
+- DONE: premade pill endpoint
+- DONE: png pill right resize
+- DONE: better doc for each endpoints
+- DONE: responsive nice menu
+- DONE: set pill count for each creation
+- DONE: page with pill generation charts over time & stats
+
+- CURRENT: page with pill generation complete tutorial & generators ( 1pill 2pills 3pills shadow logo )
 
 > ALWAYS CURRENT: Add more logos
 
 - NEXT: Logo only with color
 
 - TODO: 0 :find a way to validation submission
-- TODO: 3 :page with popular pills
-- TODO: 2 :page with pill generation charts over time & stats
-- TODO: 1 :page with pill generation complete tutorial & generators ( 1pill 2pills 3pills shadow logo )
 - TODO: 0 :clean up code for generation now it works well
-- TODO: 0 :responsive nice menu
-- TODO: 0 :pill logo only
-- TODO: 0 :premade pill endpoint
-- TODO: 0 :better doc for each endpoints
-- TODO: 0 :png pill right resize
-
+- TODO: 0 :better home page with rubriques - displayable & generate more pills titles

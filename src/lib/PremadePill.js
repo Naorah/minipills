@@ -8,7 +8,7 @@ import { two_pills } from '$lib/TwoPills.js';
 //
 // Premade pill generator
 //
-export async function premadePill(brand_name) {
+export async function premadePill(brand_name, pillng) {
   try {
     // Construire la condition de filtrage
     const filterCondition = 
@@ -25,14 +25,14 @@ export async function premadePill(brand_name) {
 
     // if no logo then the brand_name don't exist
     if (logo.length == 0) {
-      return two_pills("404", "ffffff", "212121", "No premade logo with this name", "ffffff", "a12613");
+      return two_pills("404", "ffffff", "212121", "No premade logo with this name", "ffffff", "a12613", pillng=pillng);
     }
 
     // extract the one to build
     logo = logo[0]
     
     // build the one pill with the color name & logo
-    return one_pill(logo.display_name, "ffffff", logo.color.replace('#', ''), logo.logo, "#ffffff", null);
+    return one_pill(logo.display_name, "ffffff", logo.color.replace('#', ''), logo.logo, "#ffffff", null, pillng);
   } catch (error) {
     console.error(error);
     return new Response(JSON.stringify({ error: 'An error occurred' }), { status: 500 });

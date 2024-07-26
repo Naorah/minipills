@@ -1,6 +1,23 @@
 <script>
+  import { PUBLIC_PILL_URL } from '$env/static/public';
   import Icon from '@iconify/svelte';
-  let pill_link="http://localhost:5173/pill"
+
+  let endpoints= [
+    {
+      name: "/pill",
+      return: "SVG",
+      title: "Create a SVG pill",
+      description: "Create a svg pill with the given parameters.",
+      example: `${PUBLIC_PILL_URL}/pill?1t=pill test`,
+    },
+    {
+      name: "/pillng",
+      return: "PNG",
+      title: "Create a PNG pill",
+      description: "Create a png pill with the given parameters.",
+      example: `${PUBLIC_PILL_URL}/pillng?1t=pill test`,
+    }
+  ]
 
   let parameters = [
     {
@@ -108,19 +125,29 @@
       title: "Logo color",
       description: "Color of the logo.",
       example: "&lc=ffffff",
+    },
+    {
+      name: "premade",
+      type: "string",
+      required: true,
+      title: "Premade pill",
+      description: "Build the premade pill of the given brand, this parameter takes precedence over all others if given.",
+      example: "premade=minipills",
     }
   ]
 
 </script>
+
+<!-- HTML PAGE -->
 
 <section class="c-back">
   <div class="mp-container first-section">
     <h1 class="mp-h1 doc-h1">DOCUMENTATION</h1>
 
     <div>
-      <img src="http://localhost:5173/pill?1t=All" alt="pill-test">
-      <img src="http://localhost:5173/pill?1t=yes" alt="pill-test">
-      <img src="http://localhost:5173/pill?1t=logos" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}/pill?1t=All" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}/pill?1t=yes" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}/pill?1t=logos" alt="pill-test">
     </div>
   </div>
 
@@ -140,7 +167,7 @@
         A pill is quick to build, with just one link to retrieve, whether it's a single or double pill.
       </div>
       <div class="link-display">
-        https://minipills.pelsy.net/pill?
+        {PUBLIC_PILL_URL}
       </div>
       <div class="mr-bottom">
         For people that <span class="bolding highlight">aren't used to build</span> the urls :
@@ -149,12 +176,64 @@
         The first param should be after the <span class="bolding highlight">?</span> directly, the others can be written in the order you want but need the <span class="bolding highlight">&</span> symbol before to say to the browser that's another parameter !
       </div>
       <div class="mr-bottom">
-        Example: https://minipills.pelsy.net/pill<span class="bolding highlight">?</span>first_param=blabla<span class="bolding highlight">&</span>second_param=blabla
+        Example: {PUBLIC_PILL_URL}/pill<span class="bolding highlight">?</span>first_param=blabla<span class="bolding highlight">&</span>second_param=blabla
       </div>
       <div>
         After this link you just have to add the following URL parameters.
       </div>
     </div>
+
+    <h2 class="w-text">
+      Current endpoints
+    </h2>
+
+    {#each endpoints as endpoint}
+    <table class="w-text doc-table">
+      <thead>
+        <tr>
+          <th class="mp-header-row">
+            <div class="mp-flex-container">
+              <!-- NAME & REQUIRED -->
+              <span class="mp-param-title">
+                { endpoint.name.toUpperCase() }
+              </span>               
+
+              <span class="bolding mp-optionnal mp-align-right">
+                { endpoint.return }
+              </span>
+            </div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+
+            <div class="bolding">
+              {endpoint.title}
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="doc-row">
+              {endpoint.description}
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="doc-row">
+              <span>
+                Example
+              </span>
+              : 
+              <a class="mp-ghost mp-link" href="{endpoint.example}" target="_blank">
+                {endpoint.example}
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    {/each}
 
     <h2 class="w-text">
       Pill parameters
@@ -248,6 +327,10 @@
 </section>
 
 <style>
+  .mp-link {
+    color: white;
+    text-decoration: none;
+  }
 
   .mr-bottom {
     margin-bottom: 0.5rem;

@@ -47,9 +47,25 @@ function getThirdPillData(width, height, radius) {
 /**
  * TWO PILLS GENERATOR
  */
-export function three_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, third_text, third_color, third_background_color, logo, logo_color, shadow) {
+export function three_pills(
+                            first_text, 
+                            first_color, 
+                            first_background_color, 
+                            second_text, 
+                            second_color, 
+                            second_background_color, 
+                            third_text, 
+                            third_color, 
+                            third_background_color, 
+                            logo, 
+                            logo_color, 
+                            shadow, 
+                            pillng
+                          ) {
   let stroke = 0;
   let strokeWidth = 0;
+  let pillng_bonus_height = pillng ? 2 : 0
+
   //
   // ############# TEXT COLOR BUILDING #############
   //
@@ -196,7 +212,7 @@ export function three_pills(first_text, first_color, first_background_color, sec
       ${text_shadow1}
       <text 
         x="${(width/2) + logo_aimed_size/2}"
-        y="55%" 
+        y="${height/2+1+pillng_bonus_height}" 
         dominant-baseline="middle" 
         text-anchor="middle" 
         fill="${first_color}"
@@ -216,7 +232,7 @@ export function three_pills(first_text, first_color, first_background_color, sec
       ${text_shadow2}
       <text 
         x="${width + (width2 / 2)}"
-        y="55%" 
+        y="${height/2+1+pillng_bonus_height}" 
         dominant-baseline="middle" 
         text-anchor="middle" 
         fill="${second_color}"
@@ -236,7 +252,7 @@ export function three_pills(first_text, first_color, first_background_color, sec
       ${text_shadow3}
       <text
         x="${width + width2 + (width3 / 2)}"
-        y="55%" 
+        y="${height/2+1+pillng_bonus_height}" 
         dominant-baseline="middle" 
         text-anchor="middle" 
         fill="${third_color}"

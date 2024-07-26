@@ -25,7 +25,6 @@
   // update the name_search when updated
   $: {
     if (name_search !== undefined) {
-      console.log(name_search);
       offset = 0;
       logos.set([]);
       loadLogos();
@@ -126,7 +125,7 @@
     <h1 class="mp-h1">ALL LOGOS</h1>
 
     <div>
-      <img src="{PUBLIC_PILL_URL}1t=Explore&2t={data.nb_logo.count}&3t=logos" alt="pill-test">
+      <img src="{PUBLIC_PILL_URL}/pill?1t=Explore&2t={data.nb_logo.count}&3t=logos" alt="pill-test">
     </div>
   </div>
 
@@ -178,7 +177,7 @@
               <Icon width=25 icon="material-symbols:tag" />
             </div>
             {#if logo.color}
-              <a class="mp-logo-action get-pill" target="_blank" href="{PUBLIC_PILL_URL}1t={logo.display_name}&l={logo.name}&1bc={logo.color.replace('#', '')}">
+              <a class="mp-logo-action get-pill" target="_blank" href="{PUBLIC_PILL_URL}/pill?1t={logo.display_name}&l={logo.name}&1bc={logo.color.replace('#', '')}">
                 <Icon width=25 icon="material-symbols:pill-outline" />
               </a>
             {/if}
@@ -248,6 +247,7 @@
 
   .grid-container {
     display: grid;
+    row-gap: 40px;
   }
 
   .grid-mp-actions {
@@ -300,7 +300,7 @@
   @media (min-width: 500px) and (max-width: 799px) {
     .grid-container {
       gap: 20px;
-      row-gap: 20px;
+      row-gap: 40px;
       grid-template-columns: repeat(2, 1fr);
     }
   }
@@ -308,7 +308,7 @@
   @media (min-width: 800px) and (max-width: 1049px) {
     .grid-container {
       gap: 20px;
-      row-gap: 20px;
+      row-gap: 40px;
       grid-template-columns: repeat(3, 1fr);
     }
   }
@@ -316,7 +316,7 @@
   @media (min-width: 1050px) and (max-width: 1349px) {
     .grid-container {
       gap: 20px;
-      row-gap: 20px;
+      row-gap: 40px;
       grid-template-columns: repeat(4, 1fr);
     }
   }
@@ -324,7 +324,7 @@
   @media (min-width: 1350px) and (max-width: 1599px) {
     .grid-container {
       gap: 20px;
-      row-gap: 20px;
+      row-gap: 40px;
       grid-template-columns: repeat(5, 1fr);
     }
   }
@@ -332,7 +332,7 @@
   @media (min-width: 1600px) and (max-width: 1799px) {
     .grid-container {
       gap: 30px;
-      row-gap: 30px;
+      row-gap: 40px;
       grid-template-columns: repeat(6, 1fr);
     }
   }

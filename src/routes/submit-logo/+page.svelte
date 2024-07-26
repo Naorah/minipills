@@ -76,10 +76,10 @@
 <section class="c-back">
 
   <div class="mp-container first-section">
-    <h1 class="mp-h1">SUBMIT A NEW LOGO</h1>
+    <h1 class="mp-h1 doc-h1">SUBMIT A NEW LOGO</h1>
   
     <div>
-      <img alt="mini-pill" src="{PUBLIC_PILL_URL}&1t=Help the pill&2t=grow&2bc=1ec542" />
+      <img alt="mini-pill" src="{PUBLIC_PILL_URL}/pill?1t=Help the pill&2t=grow&2bc=1ec542" />
     </div>
   
   </div>

@@ -99,13 +99,13 @@
     </div>
 
     <div>
-      <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=Pills" alt="pill-test">
+      <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=Pills" alt="pill-test">
 
-      <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=looks" alt="pill-test">
+      <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=looks" alt="pill-test">
     
-      <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=really" alt="pill-test">
+      <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=really" alt="pill-test">
   
-      <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=cute ?" alt="pill-test">
+      <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=cute ?" alt="pill-test">
     </div>
 
   </div>
@@ -138,13 +138,13 @@
       </div>
     </h2>
 
-    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=Spread&1bc=a12613" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=Spread&1bc=a12613" alt="pill-test">
 
-    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=Colors&1bc=13a155" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=Colors&1bc=13a155" alt="pill-test">
 
-    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=Anywhere&1c=f0be1a" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=Anywhere&1c=f0be1a" alt="pill-test">
 
-    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=Everywhere&1c=e210e6" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=Everywhere&1c=e210e6" alt="pill-test">
   </div>
 </section>
 
@@ -161,11 +161,11 @@
       </div>
     </div>
 
-    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=I really&1bc=a12613" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=I really&1bc=a12613" alt="pill-test">
 
-    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=want&1bc=a12613" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=want&1bc=a12613" alt="pill-test">
 
-    <img use:lazyLoad src="{PUBLIC_PILL_URL}1t=to test !&1bc=a12613" alt="pill-test">
+    <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=to test !&1bc=a12613" alt="pill-test">
 
     <h2 class="mp-how">Generate more pills</h2>
 
@@ -227,9 +227,9 @@
     <div class="input-zone mp-grid-container">
       <div>
         {#if pill_link.startsWith(`${basic_link}`)}
-          <img src={pill_link} alt="pill-test">
+          <img src="{PUBLIC_PILL_URL}/pill" alt="pill-test">
         {:else}
-          <img src="{PUBLIC_PILL_URL}1t=Wrong url&1bc=a12613" alt="pill-test">
+          <img src="{PUBLIC_PILL_URL}/pill?1t=Wrong url&1bc=a12613" alt="pill-test">
         {/if}
       </div>
       

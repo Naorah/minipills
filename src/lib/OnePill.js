@@ -3,9 +3,10 @@ import { getTextWidth, adjustColor } from '$lib/ColorUtil.js'
 /**
  * ONE PILL GENERATOR
  */
-export function one_pill(first_text, first_color, first_background_color, logo, logo_color, shadow) {
+export function one_pill(first_text, first_color, first_background_color, logo, logo_color, shadow, pillng=false) {
   let stroke = 0;
   let strokeWidth = 0;
+  let pillng_bonus_height = pillng ? 2 : 0
 
   //
   // ############# TEXT COLOR BUILDING #############
@@ -97,17 +98,17 @@ export function one_pill(first_text, first_color, first_background_color, logo, 
       ${logo_shadow_final}
       ${logo_final}
       ${text_shadow}
-      <text
-        x="${(width/2) + logo_aimed_size/2}"
-        y="55%"
-        dominant-baseline="middle" 
-        text-anchor="middle" 
-        fill="${first_color}"
-        font-size="12"
-        font-family="Arial"
-      >
-        ${first_text}
-      </text>
+      <g transform="translate(${(width/2) + logo_aimed_size/2}, ${height/2+1+pillng_bonus_height})">
+        <text
+          dominant-baseline="middle" 
+          text-anchor="middle" 
+          fill="${first_color}"
+          font-size="12"
+          font-family="Arial"
+        >
+          ${first_text}
+        </text>
+      </g>
     </svg>
   `
 }

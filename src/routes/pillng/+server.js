@@ -1,13 +1,19 @@
 // src/routes/pillng/+server.js
 import sharp from 'sharp';
+import { updateDailyPillStats } from '$lib/PillStats.js'
 
 //
 // create a png file
 //
 export async function GET({ url }) {
+  // Convert SVG to PNG
   try {
-    // Convert SVG to PNG
-    const response = await fetch(url.href.replace("pillng", 'pill'));
+    // get the right png param
+    let url_svg_pill = url.href.replace("pillng", 'pill')
+    if (url_svg_pill.includes('?')) url_svg_pill += "&pillng"
+    else url_svg_pill += "?pillng"
+    // call the api
+    const response = await fetch(url_svg_pill);
 
     let data = "";
     // Get the svg file
@@ -19,9 +25,12 @@ export async function GET({ url }) {
 
     // Creation d'une image bitmap avec sharp
     const pngImage = await sharp(Buffer.from(data))
-      .resize({ height: 50, fit: 'inside' })
+      .resize({ height: 50 })
       .png()
       .toBuffer();
+
+    // New pill created !
+    await updateDailyPillStats("png");
 
     return new Response(pngImage, {
       headers: {

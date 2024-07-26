@@ -28,13 +28,13 @@
     </div>
     <!-- Info pills -->
     <a href="{ PUBLIC_GITHUB_URL }" target="_blank">
-      <img src="{ PUBLIC_PILL_URL }1t=Github&1bc=24292e&l=github" alt="pill-test">
+      <img src="{ PUBLIC_PILL_URL }/pill?1t=Github&1bc=24292e&l=github" alt="pill-test">
     </a>
     <a href="{ PUBLIC_DISCORD_URL }" target="_blank">
-      <img src="{ PUBLIC_PILL_URL }1t=Discord&1bc=5865F2&l=discord" alt="pill-test">
+      <img src="{ PUBLIC_PILL_URL }/pill?1t=Discord&1bc=5865F2&l=discord" alt="pill-test">
     </a>
     <a href="{ PUBLIC_DONATION_URL }" target="_blank">
-      <img src="{ PUBLIC_PILL_URL }1t=Donate&l=paypal&1bc=003087" alt="pill-test">
+      <img src="{ PUBLIC_PILL_URL }/pill?1t=Donate&l=paypal&1bc=003087" alt="pill-test">
     </a>
     <!-- Free use -->
     <div class="w-text">Free Use {dateString}</div>

@@ -3,6 +3,7 @@ import { one_pill } from '$lib/OnePill.js';
 import { two_pills } from '$lib/TwoPills.js';
 import { three_pills } from '$lib/ThreePills.js';
 import { premadePill } from '$lib/PremadePill.js';
+import { updateDailyPillStats } from '$lib/PillStats.js'
 
 // isHexColor
 import { isHexColor } from '$lib/ColorUtil.js'
@@ -39,9 +40,11 @@ async function getLogoByName(name) {
 export async function GET({ url }) {
   // If errors
   let error = false;
+
   // If one or two pills
   let is_one_pill = false;
   let is_two_pill = false;
+
   // First pill
   let first_text = url.searchParams.get('1t');
   let first_color = url.searchParams.get('1c');
@@ -62,10 +65,19 @@ export async function GET({ url }) {
   let logo_color = url.searchParams.get('lc');
   let logo_svg;
 
+  // Properties
+  let shadow = url.searchParams.get('s') != null ? true : false;
+  let pillng = url.searchParams.get('pillng') != null ? true : false;
+
+  // New pill created !
+  if (!pillng) {
+    await updateDailyPillStats("svg");
+  }
+
   // Premade
   let premade = url.searchParams.get("premade")
   if (premade) {
-    const pill = await premadePill(premade);
+    const pill = await premadePill(premade, pillng);
     // return the svg
     return new Response(pill, {
       headers: {
@@ -73,9 +85,6 @@ export async function GET({ url }) {
       }
     });
   }
-
-  // Properties
-  let shadow = url.searchParams.get('s') != null ? true : false;
 
   // Get logo if logo params
   if (logo_name) {
@@ -93,6 +102,8 @@ export async function GET({ url }) {
   } else if (first_text && second_text && !third_text) {
     is_two_pill = true;
   }
+
+  // Base color handler
   if (!isHexColor(first_background_color)) {
     first_background_color = "212121";
   }
@@ -117,13 +128,14 @@ export async function GET({ url }) {
 
   // generate SVG
   if (error) {
-    svgContent = two_pills("404", "ffffff", "212121", "Pill spreader misused", "ffffff", "a12613");
+    svgContent = two_pills("404", "ffffff", "212121", "Pill spreader misused", "ffffff", "a12613", null,null,null, pillng=pillng);
   } else if (is_one_pill) {
-    svgContent = one_pill(first_text, first_color, first_background_color, logo_svg, logo_color, shadow);
+    
+    svgContent = one_pill(first_text, first_color, first_background_color, logo_svg, logo_color, shadow, pillng);
   } else if (is_two_pill) {
-    svgContent = two_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, logo_svg, logo_color, shadow);
+    svgContent = two_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, logo_svg, logo_color, shadow, pillng);
   } else {
-    svgContent = three_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, third_text, third_color, third_background_color, logo_svg, logo_color, shadow);
+    svgContent = three_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, third_text, third_color, third_background_color, logo_svg, logo_color, shadow, pillng);
   }
 
   // return the svg

@@ -32,3 +32,11 @@ model LogoSubmission {
   createdAt     DateTime   @default(now())
   validatedAt   DateTime?
 }
+
+model DailyPillStats {
+  date   DateTime
+  count  Int     
+  type   String   @default("svg")
+
+  @@id([date, type])
+}

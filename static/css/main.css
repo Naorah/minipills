@@ -279,55 +279,6 @@ tr {
 }
 
 /**
- * SCROLL TOP BUTTON
-**/
-
-#scroll-top {
-  display: none;
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: var(--color);
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
-}
-
-#scroll-top{
-  font-size: 2rem;
-}
-
-.gg-chevron-up {
-  box-sizing: border-box;
-  position: relative;
-  display: block;
-  transform: scale(var(--ggs,1));
-  width: 22px;
-  height: 22px;
-  border: 2px solid transparent;
-  border-radius: 100px
-}
-
-.gg-chevron-up::after {
-  content: "";
-  display: block;
-  box-sizing: border-box;
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-top: 2px solid;
-  border-right: 2px solid;
-  transform: rotate(-45deg);
-  left: 4px;
-  bottom: 2px
-}
-
-/**
  *
  * MEDIA < 1000px
  *
