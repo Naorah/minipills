@@ -167,17 +167,17 @@
           </div>
 
           <div class="bottom-pill w-text grid-mp-actions">
-            <div class="mp-logo-action download-pill" on:click={downloadFile(logo.logo, logo.name+".svg")}>
+            <div class="mp-logo-action download-pill" on:click={downloadFile(logo.logo, logo.name+".svg")} data-tooltip="Download svg file">
               <Icon width=25 icon="material-symbols:download" />
             </div>
-            <div class="mp-logo-action color-pill" on:click={() => copyToPaperClip(logo.color)}>
+            <div class="mp-logo-action color-pill" on:click={() => copyToPaperClip(logo.color)} data-tooltip="Copy brand color">
               <Icon width=25 icon="material-symbols:colorize" />
             </div>
-            <div class="mp-logo-action color-pill" on:click={() => copyToPaperClip(logo.name)}>
+            <div class="mp-logo-action color-pill" on:click={() => copyToPaperClip(logo.name)} data-tooltip="Copy logo TAG">
               <Icon width=25 icon="material-symbols:tag" />
             </div>
             {#if logo.color}
-              <a class="mp-logo-action get-pill" target="_blank" href="{PUBLIC_PILL_URL}/pill?1t={logo.display_name}&l={logo.name}&1bc={logo.color.replace('#', '')}">
+              <a class="mp-logo-action get-pill" target="_blank" href="{PUBLIC_PILL_URL}/pill?1t={logo.display_name}&l={logo.name}&1bc={logo.color.replace('#', '')}" data-tooltip="Get premade tile">
                 <Icon width=25 icon="material-symbols:pill-outline" />
               </a>
             {/if}

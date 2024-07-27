@@ -38,6 +38,8 @@
 - DONE: responsive nice menu
 - DONE: set pill count for each creation
 - DONE: page with pill generation charts over time & stats
+- DONE: better home page with rubriques - displayable & generate more pills titles
+- DONE: tooltips on logos buttons
 
 - CURRENT: page with pill generation complete tutorial & generators ( 1pill 2pills 3pills shadow logo )
 
@@ -47,4 +49,4 @@
 
 - TODO: 0 :find a way to validation submission
 - TODO: 0 :clean up code for generation now it works well
-- TODO: 0 :better home page with rubriques - displayable & generate more pills titles
+

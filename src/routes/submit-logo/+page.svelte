@@ -134,8 +134,8 @@
   <div class="mp-container">
     <div class="up-line"></div>
     <h2 class="w-text">Logos waiting for approval</h2>
-    <div class="grid-container">
-      {#if data.logos.length > 0}
+    {#if data.logos.length > 0}
+      <div class="grid-container">
         {#each data.logos as logo}
           <div class="grid-item">
             <div class="logo-pill">
@@ -159,8 +159,19 @@
             </div>
           </div>
         {/each}
-      {/if}
-    </div>
+      </div>
+    {:else}
+      <div class="mp-description">
+
+        <div class="w-text mp-text-shard">
+          No logo waiting...
+        </div>
+        <div class="w-text mp-text-shard">
+          Looks like everything has been added, it's time to make a suggestion !
+        </div>
+        
+      </div>
+    {/if}
   </div>
 </section>
 

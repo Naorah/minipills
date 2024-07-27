@@ -1,7 +1,9 @@
 <script>
+  import { onMount } from 'svelte';
   import Icon from '@iconify/svelte';
 
   let mybutton;
+  let pill;
 
   // is open
   let is_open = false;
@@ -16,6 +18,7 @@
     document.documentElement.scrollTop = 0;
   }
 
+  // When the user is scrolling
   function scrollFunction() {
     if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
       mybutton.style.display = "block";
@@ -33,9 +36,9 @@
 
 <div>
   <input type="checkbox" id="active" class="menu-btn" on:click={toggleMenu} bind:checked={is_open}>
-  <label for="active" class="menu-btn">
+  <label bind:this={pill} for="active" class="menu-btn">
     <div class="nav-icon">
-      <Icon width=35 icon="pepicons-pop:pill-circle" />
+      <Icon width=35 icon="pepicons-pop:pill-circle"/>
     </div>
   </label>
   <div class="wrapper">
@@ -52,7 +55,9 @@
 
 <style>
   .nav-icon {
-    margin: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   .wrapper{
     z-index: 2;
@@ -83,6 +88,9 @@
     cursor: pointer;
     background: var(--back);
     transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
   #active:checked ~ .menu-btn{
     color: #fff;
@@ -178,5 +186,20 @@
       filter: hue-rotate(360deg);
     }
   }
+  @keyframes pillrotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .pillrotate {
+    animation: pillrotate 5s linear;
+    border-radius: 50%;
+  }
+
+  /* styles.css */
 
 </style>

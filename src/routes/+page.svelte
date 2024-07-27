@@ -2,7 +2,7 @@
   import { PUBLIC_PILL_URL } from '$env/static/public';
   import { lazyLoad } from '$lib/LazyLoad.js'
   let basic_link= PUBLIC_PILL_URL
-  let pill_link = PUBLIC_PILL_URL
+  let pill_link = PUBLIC_PILL_URL+"/pill?"
 
   let steps = [
     {
@@ -80,7 +80,7 @@
   }
 
   function reset_link() {
-    pill_link = basic_link;
+    pill_link = basic_link+"/pill?";
     for (let step of steps) {
       step.pushed = false;
       step.button = step.url_shard;
@@ -91,11 +91,17 @@
 
 <section class="c-back">
   <div class="mp-container first-section">
-    <h1 class="mp-h1">MINI PILLS</h1>
+    <h1 class="mp-h1 big">MINI PILLS</h1>
 
     <div class="mp-mb">
-      <h2 class="mp-spread bolding mp-big-text">SPREAD</h2> 
-      <h2 class="mp-spread"><span class="w-text bolding">EVERYWHERE</span></h2>
+      <h2 class="mp-spread bolding mp-big-text">
+        <div>
+          YOUR <span class="w-text bolding">DOSE</span> OF DATA
+        </div>
+        <div>
+          PERFECTLY <span class="w-text bolding">PACKED</span> IN <span class="w-text bolding">PILLS</span>
+        </div>
+      </h2> 
     </div>
 
     <div>
@@ -126,15 +132,12 @@
     </div>
 
     <h2 class="c-text mp-semi-title">
-      <div class="bolding mp-big-text">CUSTOMIZE</div> 
+      <div class="bolding mp-big-text">MINI PILLS</div> 
       <div>
-        <span class="bg-text">anything with these</span>
+        <span class="bg-text">just for your data</span>
       </div>
       <div>
-        <span class="bolding mp-big-text">AUTO-GENERATED</span>
-      </div>
-      <div>
-        <span class="bg-text">pills !</span>
+        <span class="bolding mp-big-text">ADDICTION</span>
       </div>
     </h2>
 
@@ -150,14 +153,45 @@
 
 <section class="bg-back">
   <div class="mp-container">
-    <h2 class="mp-how">Displayable pills</h2>
+    <h2 class="mp-how">Pills That Proliferate Your Data Reach</h2>
 
-    <div class="mp-description">
-      <div class="w-text mp-text-shard">
-        Mini pills are here to enable you to show <span class="bolding highlight">anything you need</span> through <span class="bolding highlight">mini vector</span> pills !
-      </div>
-      <div class="w-text mp-text-shard">
-        Mini pills are <span class="bolding highlight">generated in a millisecond</span> without any effort, just grab the <span class="bolding highlight">basic link</span>, build <span class="bolding highlight">anything</span> with text, color and background colors !
+    <div class="mp-description w-text">
+
+      <div class="grid-container">
+        <div class="grid-item">
+          <div class="mp-explain-img">
+            <img use:lazyLoad height=150 src="/svg/amplify.svg" alt="amplify"/>
+          </div>
+          <div class="mp-grid-title">
+            AMPLIFY
+          </div>
+          <div class="mp-grid-description">
+            Seek for a big <span class="bolding highlight">impact</span>, with an <span class="bolding highlight">attractive</span> design.
+            No need to think of <span class="bolding highlight">how</span>, we hold the <span class="bolding highlight">solution</span>.
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="mp-explain-img">
+            <img use:lazyLoad height=150 src="/svg/minify.svg" alt="amplify"/>
+          </div>
+          <div class="mp-grid-title">
+            MINIFY
+          </div>
+          <div class="mp-grid-description">
+            <span class="bolding highlight">Less</span> is <span class="bolding highlight">More</span>.
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="mp-explain-img">
+            <img use:lazyLoad height=150 src="/svg/fix.svg" alt="amplify"/>
+          </div>
+          <div class="mp-grid-title">
+            GET A FIX
+          </div>
+          <div class="mp-grid-description">
+            We <span class="bolding highlight">take care</span> of you, we'll never stop to <span class="bolding highlight">bring you</span> mini pills.
+          </div>
+        </div>
       </div>
     </div>
 
@@ -167,20 +201,46 @@
 
     <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=to test !&1bc=a12613" alt="pill-test">
 
-    <h2 class="mp-how">Generate more pills</h2>
+    <h2 class="mp-how">Compact Pills for Powerful Information</h2>
 
     <div class="mp-description w-text">
-      <div class="mp-text-shard">
-        Mini pills are <span class="bolding highlight">generated</span> as svg directly from a link !
-      </div>
-      <div class="mp-text-shard">
-        You can generate them by grabing the <span class="bolding highlight">basic link</span> below, and add the <span class="bolding highlight">rights parameters</span> for you to get the right output !
-      </div>
-      <div class="mp-text-shard">
-        It's very easy but why not <span class="bolding highlight">try it out</span> a bit ?
-      </div>
-      <div class="mp-text-shard">
-        Try to <span class="bolding highlight">push</span> the differents buttons below and see the <span class="bolding highlight">pill building</span> ! If you've <span class="bolding highlight">not enough</span> you can change the <span class="bolding highlight">url directly</span> and test more combinations !
+
+      <div class="grid-container">
+        <div class="grid-item">
+          <div class="mp-explain-img">
+            <img use:lazyLoad height=150 src="/svg/fast.svg" alt="amplify"/>
+          </div>
+          <div class="mp-grid-title">
+            VERY FAST
+          </div>
+          <div class="mp-grid-description">
+            A pill <span class="bolding highlight">delivered</span> in just a hand of <span class="bolding highlight">milliseconds</span>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="mp-explain-img">
+            <img use:lazyLoad height=150 src="/svg/multi.svg" alt="amplify"/>
+          </div>
+          <div class="mp-grid-title">
+            MULTI USAGE
+          </div>
+          <div class="mp-grid-description">
+            <div>Need <span class="bolding highlight">SVG</span> ? I got it ! </div>
+            <div>Need <span class="bolding highlight">PNG</span> ?  I got it ! </div>
+            <div>Need <span class="bolding highlight">customisation</span> ? Just guess !</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="mp-explain-img">
+            <img use:lazyLoad height=150 src="/svg/refix.svg" alt="amplify"/>
+          </div>
+          <div class="mp-grid-title">
+            GET A FIX AGAIN
+          </div>
+          <div class="mp-grid-description">
+            I know you're already <span class="bolding highlight">addict</span>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -227,7 +287,7 @@
     <div class="input-zone mp-grid-container">
       <div>
         {#if pill_link.startsWith(`${basic_link}`)}
-          <img src="{PUBLIC_PILL_URL}/pill" alt="pill-test">
+          <img src="{pill_link}" alt="pill-test">
         {:else}
           <img src="{PUBLIC_PILL_URL}/pill?1t=Wrong url&1bc=a12613" alt="pill-test">
         {/if}
@@ -241,6 +301,63 @@
         <button on:click={() => copyToPaperClip(pill_link)} class="mp-white-button">{copy_caption}</button>
         <button on:click={() => reset_link()} class="mp-red-button">RESET</button>
       </div>
+
+      <div class="w-text final">
+        If you don't have enough, you can visit the <a class="mp_link" href="/docs">documentation</a>, all the <a class="mp_link" href="/logo">logos</a> available today, and more !
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+
+  .final {
+    line-height: 2rem;
+  }
+
+  .mp_link {
+    text-decoration: none;
+    color: white;
+    background-color: #4d4d4d;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    border-radius: 5px;
+  }
+
+  .mp-explain-img {
+    margin-top: auto;
+    height: 200px;
+  }
+
+  .mp-grid-title {
+    font-size: 2rem;
+    font-weight: bold;
+    padding-bottom: 0.2rem;
+    border-bottom: solid 1px #bdbdbd;
+    margin-bottom: 1rem;
+  }
+
+  .mp-grid-description {
+    margin-right: 3rem;
+    margin-left: 3rem;
+  }
+
+  /* Conteneur de la grille */
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonnes de largeur égale */
+    gap: 16px; /* Espacement entre les éléments de la grille */
+  }
+
+  /* Style des éléments de la grille */
+  .grid-item {
+    padding: 20px; /* Espacement intérieur pour les éléments */
+    margin-top: 3rem;
+  }
+
+  /* Media query pour les écrans inférieurs à 750px */
+  @media (max-width: 1000px) {
+    .grid-container {
+      grid-template-columns: 1fr; /* 1 colonne en mode mobile */
+    }
+  }
+</style>
