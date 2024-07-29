@@ -7,15 +7,22 @@
       name: "/pill",
       return: "SVG",
       title: "Create a SVG pill",
-      description: "Create a svg pill with the given parameters.",
+      description: "Create a svg pill with the given parameters below.",
       example: `${PUBLIC_PILL_URL}/pill?1t=pill test`,
     },
     {
       name: "/pillng",
       return: "PNG",
       title: "Create a PNG pill",
-      description: "Create a png pill with the given parameters.",
+      description: "Create a png pill with the given parameters below.",
       example: `${PUBLIC_PILL_URL}/pillng?1t=pill test`,
+    },
+    {
+      name: "/brand",
+      return: "SVG",
+      title: "Create a SVG logo",
+      description: "Create a logo with custom or base brand color if not specified (params: &l + &lc only).",
+      example: `${PUBLIC_PILL_URL}/brand?1l=minipills`,
     }
   ]
 

@@ -192,6 +192,10 @@
 
 <style>
 
+  .bottom-pill {
+    z-index: 1;
+  }
+
   .mp-display-name {
     margin-top: auto;
     margin-left: 0.5rem;
@@ -253,6 +257,7 @@
   .grid-mp-actions {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    z-index: 1;
   }
 
   .grid-item {
@@ -261,6 +266,7 @@
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     text-align: center;
+    z-index: 1;
   }
 
   .svg-zone {

@@ -195,11 +195,6 @@
     }
   }
 
-  .pillrotate {
-    animation: pillrotate 5s linear;
-    border-radius: 50%;
-  }
-
   /* styles.css */
 
 </style>

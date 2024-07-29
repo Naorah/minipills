@@ -6,13 +6,13 @@ import { premadePill } from '$lib/PremadePill.js';
 import { updateDailyPillStats } from '$lib/PillStats.js'
 
 // isHexColor
-import { isHexColor } from '$lib/ColorUtil.js'
+import { isHexColor, getLogoSvgByName } from '$lib/ColorUtil.js'
 
 // PRISMA IMPORT
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-async function getLogoByName(name) {
+async function getLogoSvgByName(name) {
   try {
     const logoRecord = await prisma.logo.findUnique({
       where: {
@@ -89,7 +89,7 @@ export async function GET({ url }) {
   // Get logo if logo params
   if (logo_name) {
     // Set the basic color to white if no logo_color
-    logo_svg = await getLogoByName(logo_name);
+    logo_svg = await getLogoSvgByName(logo_name);
     logo_color = logo_color ? "#"+logo_color : "#fff"
   }
 

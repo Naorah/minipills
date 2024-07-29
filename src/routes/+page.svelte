@@ -293,7 +293,7 @@
         {/if}
       </div>
       
-      <div>
+      <div class="mp-tab">
         <input class="mp-input" bind:value={pill_link}/>
       </div>
 

@@ -40,12 +40,13 @@
 - DONE: page with pill generation charts over time & stats
 - DONE: better home page with rubriques - displayable & generate more pills titles
 - DONE: tooltips on logos buttons
+- DONE: Logo only with color
+- DONE: logo page under the menu
 
 - CURRENT: page with pill generation complete tutorial & generators ( 1pill 2pills 3pills shadow logo )
 
 > ALWAYS CURRENT: Add more logos
 
-- NEXT: Logo only with color
 
 - TODO: 0 :find a way to validation submission
 - TODO: 0 :clean up code for generation now it works well

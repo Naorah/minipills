@@ -1,4 +1,8 @@
+// PRISMA IMPORT
+import { PrismaClient } from '@prisma/client';
 import { createCanvas } from 'canvas';
+
+const prisma = new PrismaClient();
 
 export function getTextWidth(text, fontSize=12, fontFamily = 'Arial') {
   // Charger la police
@@ -55,4 +59,51 @@ export function adjustColor(color, adjustment) {
 export function isHexColor(str) {
   const hexColorPattern = /^([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
   return hexColorPattern.test(str);
+}
+
+export async function getLogoSvgByName(name) {
+  try {
+    const logoRecord = await prisma.logo.findUnique({
+      where: {
+        name: name,
+      },
+      select: {
+        logo: true,
+      },
+    });
+
+    if (logoRecord) {
+      return logoRecord.logo;
+    } else {
+      console.log(`Logo not found for name: ${name}`);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error retrieving logo:', error);
+    return null;
+  } finally {
+    await prisma.$disconnect();
+  }
+}
+
+export async function getLogoByName(name) {
+  try {
+    const logoRecord = await prisma.logo.findUnique({
+      where: {
+        name: name,
+      }
+    });
+
+    if (logoRecord) {
+      return logoRecord;
+    } else {
+      console.log(`Logo not found for name: ${name}`);
+      return null;
+    }
+  } catch (error) {
+    console.error('Error retrieving logo:', error);
+    return null;
+  } finally {
+    await prisma.$disconnect();
+  }
 }
