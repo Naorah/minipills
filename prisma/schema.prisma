@@ -40,3 +40,10 @@ model DailyPillStats {
 
   @@id([date, type])
 }
+
+model Validator {
+  id            String @id @default(uuid())
+  username      String @unique
+  passwordHash  String
+  userAuthToken String @unique
+}

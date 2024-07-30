@@ -2,32 +2,41 @@
   import { PUBLIC_PILL_URL } from '$env/static/public';
   import Icon from '@iconify/svelte';
 
-  let pill_link = PUBLIC_PILL_URL+"/pill?";
+  let pill_link = PUBLIC_PILL_URL+"/pill";
+  let pill_parameters = ""
+  let final_link = pill_link;
 
   let copy_caption = "COPY";
 
-  let text_1 = {
-    text: "",
-    color: "",
-    back: ""
+  let pill_bindings = {
+    "1t": "",
+    "1c": "",
+    "1bc": "",
+    "2t": "",
+    "2c": "",
+    "2bc": "",
+    "3t": "",
+    "3c": "",
+    "3bc": "",
+    "l": "",
+    "lc": "",
+    "s": false
   };
+  $: if (pill_bindings) {
+    refresh_link();
+  }
 
-  let text_2 = {
-    text: "",
-    color: "",
-    back: ""
-  };
-
-  let text_3 = {
-    text: "",
-    color: "",
-    back: ""
-  };
-
-  let logo = "";
-  let logo_color = "";
-
-  let shadow = false;
+  function refresh_link() {
+    final_link = pill_link
+    let count = 0;
+    for(let [key, value] of Object.entries(pill_bindings)) {
+      if (pill_bindings[key] == "") continue
+      if (count == 0) final_link += '?';
+      else final_link += "&";
+      final_link += key + "=" + value
+      count += 1
+    }
+  }
 
   function copyToPaperClip(text) {
 
@@ -46,7 +55,25 @@
   }
 
   function reset_link() {
-    pill_link = PUBLIC_PILL_URL+"/pill?";
+    final_link = PUBLIC_PILL_URL+"/pill?";
+    shadow_styles = "border: solid 2px #212121";
+    for(let [key, value] of Object.entries(pill_bindings)) {
+      if (key == 's') pill_bindings[key] = false;
+      else pill_bindings[key] = "";
+    }
+  }
+
+
+  let shadow_styles = 'border: solid 2px #212121';
+  function toggleShadow() {
+    pill_bindings['s'] = !pill_bindings['s']
+    if (pill_bindings['s']) {
+      shadow_styles = "border: solid 2px #a12613";
+    }
+    else {
+      shadow_styles = "border: solid 2px #212121";
+    }
+    refresh_link();
   }
 
 </script>
@@ -77,6 +104,8 @@
   
     <!-- GENERATOR ZONE -->
     <div class="input-zone mp-grid-container">
+      <!-- svelte-ignore a11y-click-events-have-key-events -->
+      <!-- svelte-ignore a11y-no-static-element-interactions -->
       <div class="w-text">
         <div class="generator-card mp-flex-container">
           <div class="generator-title">
@@ -86,7 +115,7 @@
             REQUIRED
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={text_1.text}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['1t']}/>
         </div>
 
         <div class="generator-card mp-flex-container">
@@ -97,7 +126,7 @@
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={text_1.color}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['1c']}/>
         </div>
 
         <div class="generator-card mp-flex-container">
@@ -108,7 +137,7 @@
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={text_1.back}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['1bc']}/>
         </div>
 
         <div class="generator-card mp-flex-container">
@@ -119,7 +148,7 @@
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={text_2.text}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['2t']}/>
         </div>
 
         <div class="generator-card mp-flex-container">
@@ -130,7 +159,7 @@
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={text_2.color}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['2c']}/>
         </div>
 
         <div class="generator-card mp-flex-container">
@@ -141,7 +170,7 @@
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={text_2.back}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['2bc']}/>
         </div>
 
         <div class="generator-card mp-flex-container">
@@ -152,7 +181,7 @@
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={text_3.text}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['3t']}/>
         </div>
 
         <div class="generator-card mp-flex-container">
@@ -163,7 +192,7 @@
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={text_3.color}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['3c']}/>
         </div>
 
         <div class="generator-card mp-flex-container">
@@ -174,7 +203,7 @@
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={text_3.back}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['3bc']}/>
         </div>
 
         <div class="generator-card mp-flex-container">
@@ -185,7 +214,7 @@
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={logo}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['l']}/>
         </div>
 
         <div class="generator-card mp-flex-container">
@@ -196,26 +225,25 @@
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input class="mp-input max-width" bind:value={logo_color}/>
+          <input class="mp-input max-width" bind:value={pill_bindings['lc']}/>
         </div>
 
-        <div class="generator-card mp-flex-container">
+        <div style="{shadow_styles}" class="generator-card mp-flex-container" on:click={toggleShadow}>
           <div class="generator-title">
-            Shadow
+            Shadow ( {pill_bindings['s'] ? 'ON' : 'OFF'} )
           </div>
           <div class="mp-align-right bolding mp-optionnal">
             OPTIONNAL
           </div>
           <div class="break"></div>
-          <input type="checkbox" class="mp-input max-width" bind:checked={shadow}/>
         </div>
 
       </div>
   
       <!-- PILL --> 
       <div>
-        {#if pill_link.startsWith(`${PUBLIC_PILL_URL}`)}
-          <img src="{pill_link}" alt="pill-test">
+        {#if final_link.startsWith(`${PUBLIC_PILL_URL}`)}
+          <img src="{final_link}" alt="pill-test">
         {:else}
           <img src="{PUBLIC_PILL_URL}/pill?1t=Wrong url&1bc=a12613" alt="pill-test">
         {/if}
@@ -223,11 +251,11 @@
   
       <!-- COPY BUTTONS -->
       <div class="mp-tab">
-        <input class="mp-input" bind:value={pill_link}/>
+        <input class="mp-input" bind:value={final_link}/>
       </div>
   
       <div>
-        <button on:click={() => copyToPaperClip(pill_link)} class="mp-white-button">{copy_caption}</button>
+        <button on:click={() => copyToPaperClip(pill_link + pill_parameters)} class="mp-white-button">{copy_caption}</button>
         <button on:click={() => reset_link()} class="mp-red-button">RESET</button>
       </div>
     </div>
@@ -236,6 +264,7 @@
 </section>
 
 <style>
+
   .mp-optionnal {
     color: #1ec542;
   }

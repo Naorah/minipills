@@ -42,12 +42,13 @@
 - DONE: tooltips on logos buttons
 - DONE: Logo only with color
 - DONE: logo page under the menu
+- DONE: page with pill generation complete tutorial & generators ( 1pill 2pills 3pills shadow logo )
 
-- CURRENT: page with pill generation complete tutorial & generators ( 1pill 2pills 3pills shadow logo )
+- CURRENT: clean up code for generation now it works well
+- CURRENT: Add more logos
 
-> ALWAYS CURRENT: Add more logos
+lib/pill/
 
-
-- TODO: 0 :find a way to validation submission
-- TODO: 0 :clean up code for generation now it works well
-
+- get_text(text, color, offset, shadow)
+- get_img(svg, color, shadow)
+- get_one_pill_back, get_two_pills_back, get_three_pills_back
