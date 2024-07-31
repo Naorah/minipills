@@ -44,8 +44,6 @@ async function send_webhook_submission(display_name, name, color, discord_user) 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
-
-    console.log('Embed sent successfully');
   } catch (error) {
     console.error('Error sending embed:', error);
   }
@@ -53,15 +51,20 @@ async function send_webhook_submission(display_name, name, color, discord_user) 
 
 //
 //
-//
+// Get the not validated logo submission
 //
 //
 export async function GET() {
   try {
     // Récupérer les enregistrements avec Prisma
     const all_logos = await prisma.logoSubmission.findMany({
+      where: {
+        validated_at : {
+          equals: null
+        }
+      },
       orderBy: {
-        createdAt: 'desc'
+        created_at: 'desc'
       }
     });
 
@@ -95,7 +98,7 @@ export async function POST({ request, cookies }) {
     const display_name = formData.get('display_name');
     const logoFile = formData.get('logo');
     const color = formData.get('color').replace('#', '');
-    const discord = formData.get('discord') ? formData.get('discord') : null;
+    const discord = formData.get('discord');
 
     if (!isHexColor(color)) {
       return new Response(JSON.stringify({ message: "Submission failed: Color is not valid" }), {
@@ -124,6 +127,7 @@ export async function POST({ request, cookies }) {
       status: 201,
       headers: { 'Content-Type': 'application/json' },
     });
+
   } catch (error) {
     console.error(error.status);
     return new Response(JSON.stringify({ message: "Submission failed: Error in your svg file" }), {

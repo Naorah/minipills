@@ -12,31 +12,6 @@ import { isHexColor, getLogoSvgByName } from '$lib/ColorUtil.js'
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
-async function getLogoSvgByName(name) {
-  try {
-    const logoRecord = await prisma.logo.findUnique({
-      where: {
-        name: name,
-      },
-      select: {
-        logo: true,
-      },
-    });
-
-    if (logoRecord) {
-      return logoRecord.logo;
-    } else {
-      console.log(`Logo not found for name: ${name}`);
-      return null;
-    }
-  } catch (error) {
-    console.error('Error retrieving logo:', error);
-    return null;
-  } finally {
-    await prisma.$disconnect();
-  }
-}
-
 export async function GET({ url }) {
   // If errors
   let error = false;

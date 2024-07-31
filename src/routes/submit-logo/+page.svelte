@@ -2,6 +2,7 @@
   import { PUBLIC_PILL_URL } from '$env/static/public';
   import { writable } from 'svelte/store';
   import { onMount } from 'svelte';
+  import { page } from '$app/stores'
 
   export let data;
 
@@ -14,6 +15,11 @@
 
   const message = writable('');
 
+  //
+  //
+  // Page startup
+  //
+  //
   onMount(async () => {
     const response = await fetch('/api/csrf-token');
     if (response.ok) {
@@ -23,6 +29,22 @@
     }
   });
 
+  async function reloadSubmission() {
+    let new_data_response = await fetch('/api/logo_submission');
+    if (new_data_response.ok) {
+      const new_data = await new_data_response.json();
+      data.logos = new_data;  // Ensure to access the correct property
+    } else {
+      const error = await new_data_response.json();
+      message.set(`Error fetching logos: ${error.message}`);
+    }
+  }
+
+  //
+  //
+  // Add a logo
+  //
+  //
   const submitLogo = async (event) => {
     event.preventDefault();
 
@@ -31,7 +53,9 @@
     formData.append('display_name', display_name);
     formData.append('logo', logo);
     formData.append('color', color);
-    formData.append('discord', discord);
+    if (discord !== undefined) {
+      formData.append('discord', discord);
+    }
 
     const response = await fetch('/api/logo_submission', {
       method: 'POST',
@@ -50,13 +74,18 @@
       color = '';
       discord = '';
       // reload the logos
-      data = fetch('/api/logo_submission').json();
+      await reloadSubmission();
     } else {
       const error = await response.json();
       message.set(`Error: ${error.message}...`);
     }
   };
 
+  //
+  //
+  // Formatting date for page display
+  //
+  //
   function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
@@ -71,7 +100,105 @@
     return [day, month, year].join('-'); 
   }
 
+  //
+  //
+  // Logo validation
+  //
+  //
+  async function validate_submission(logo) {
+    try {
+      // create a formData
+      const formData = new FormData();
+      formData.append('logo', JSON.stringify(logo));
+      // send response
+      const response = await fetch('/api/logo/validate', {
+        method: 'POST',
+        headers: {
+          'x-csrf-token': csrfToken
+        },
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        console.log('Validation réussie');
+        // Reload the submissions
+        await reloadSubmission();
+      } else {
+        console.error('Erreur de validation');
+        // Gérer les erreurs ici
+      }
+    } catch (error) {
+      console.error('Erreur lors de la demande:', error);
+    }
+  }
+
+  //
+  //
+  // Logo validation
+  //
+  //
+  async function reject_submission(logo, reason) {
+    try {
+      // create a formData
+      const formData = new FormData();
+      formData.append('logo', JSON.stringify(logo));
+      formData.append('reason', reason);
+      // send response
+      const response = await fetch('/api/logo/reject', {
+        method: 'POST',
+        headers: {
+          'x-csrf-token': csrfToken
+        },
+        body: formData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        console.log('Rejection réussie');
+        // Reload the submissions
+        await reloadSubmission();
+      } else {
+        console.error('Erreur de validation');
+        // Gérer les erreurs ici
+      }
+    } catch (error) {
+      console.error('Erreur lors de la demande:', error);
+    }
+  }
+
+  //
+  // MODAL HANDLER
+  //
+  import ReasonModal from '$lib/components/ModalReason.svelte';
+
+  let showModal = false;
+  let reason = '';
+  let selected_logo_to_reject;
+
+  function openModal(logo) {
+    showModal = true;
+    selected_logo_to_reject = logo;
+  }
+
+  function closeModal() {
+    showModal = false;
+  }
+
+  async function handleModalSubmit(event) {
+    reason = event.detail;
+    await reject_submission(selected_logo_to_reject, reason)
+  }
+
 </script>
+
+<ReasonModal
+  isOpen={showModal}
+  on:submit={handleModalSubmit}
+  onClose={closeModal}
+/>
 
 <section class="c-back">
 
@@ -83,6 +210,7 @@
     </div>
   
   </div>
+
 
   <div class="mp-nav">
     <a class="nav-btn" href="/">Home</a>
@@ -134,30 +262,40 @@
   <div class="mp-container">
     <div class="up-line"></div>
     <h2 class="w-text">Logos waiting for approval</h2>
-    {#if data.logos.length > 0}
+    {#if data.logos && data.logos.length > 0}
       <div class="grid-container">
         {#each data.logos as logo}
-          <div class="grid-item">
-            <div class="logo-pill">
-              <div class="submit-name">
-                <div>{logo.display_name}</div>
-                <div class="color-dot" style="background-color: #{logo.color};"></div>
-              </div>
-              <div>
-                <img class="submit-logo" src={`data:image/svg+xml;utf8,${logo.logo}`} alt="svg"/>
-              </div>
-              {#if logo.createdAt}
-                <div>
-                  {formatDate(logo.createdAt)}
+          {#if !logo.validated_at}
+            <div class="grid-item">
+              <div class="logo-pill">
+                <div class="submit-name">
+                  <div>{logo.display_name}</div>
+                  <div class="color-dot" style="background-color: #{logo.color};"></div>
                 </div>
-              {/if}
-              {#if logo.discord}
-                <div>
-                  from: {logo.discord}
+                <div class="submit-logo-container">
+                  <img class="submit-logo" src={`data:image/svg+xml;utf8,${logo.logo}`} alt="svg"/>
                 </div>
-              {/if}
+                {#if logo.created_at}
+                  <div>
+                    {formatDate(logo.created_at)}
+                  </div>
+                {/if}
+                {#if logo.discord}
+                  <div>
+                    from: {logo.discord}
+                  </div>
+                {/if}
+                {#if $page.data.user.role == 'ADMIN'}
+                  <button style="width: 100%" on:click={() => validate_submission(logo)}>
+                    VALIDATE
+                  </button>
+                  <button style="width: 100%; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px;" on:click={() => openModal(logo)}>
+                    REFUSE
+                  </button>
+                {/if}
+              </div>
             </div>
-          </div>
+          {/if}
         {/each}
       </div>
     {:else}
@@ -195,6 +333,10 @@
 
   .submit-logo {
     width: 100px;
+    height: 100px;
+  }
+
+  .submit-logo-container {
     height: 100px;
   }
 

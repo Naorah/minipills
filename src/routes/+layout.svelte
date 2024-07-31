@@ -1,6 +1,6 @@
 <script>
-  import NavBar from '$lib/components/NavBar.svelte'
-  import PillFooter from '$lib/components/PillFooter.svelte'
+  import NavBar from '$lib/components/NavBar.svelte';
+  import PillFooter from '$lib/components/PillFooter.svelte';
 </script>
 
 <NavBar></NavBar>
