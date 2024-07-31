@@ -1,54 +1,70 @@
-- DONE: one pill
-- DONE: two pills
-- DONE: Home page
-- DONE: Minipills tutorial
-- DONE: Minipills logo
-- DONE: Logo scrap
-- DONE: Logo TABLE
-- DONE: Logo page
-- DONE: Lazy loading Logo
-- DONE: Logo submission TABLE
-- DONE: New logo for minipills ( svg better )
-- DONE: Fancy lazy loading for logos
-- DONE: Logo action bar
-- DONE: Iconify on svelte
-- DONE: Page Logo research
-- DONE: Scrap logo color for each
-- DONE: Build a default pill for each logo
-- DONE: Logo creation date 
-- DONE: Go to the top button
-- DONE: Public .env variable for pill generation
-- DONE: 24x24 viewport for each svg
-- DONE: Nice footer component
-- DONE: Page with documentation
-- DONE: 3-pills
-- DONE: Csrf-token for submission
-- DONE: Submission creation
-- DONE: Page for Logo submission
-- DONE: improve the logo loading with a new request each time
-- DONE: minipills discord server
-- DONE: minipills discord on footer
-- DONE: donate button
-- DONE: png pill
-- DONE: Logo submission current list
-- DONE: minipills discord webhook with validated message on discord
-- DONE: premade pill endpoint
-- DONE: png pill right resize
-- DONE: better doc for each endpoints
-- DONE: responsive nice menu
-- DONE: set pill count for each creation
-- DONE: page with pill generation charts over time & stats
-- DONE: better home page with rubriques - displayable & generate more pills titles
-- DONE: tooltips on logos buttons
-- DONE: Logo only with color
-- DONE: logo page under the menu
-- DONE: page with pill generation complete tutorial & generators ( 1pill 2pills 3pills shadow logo )
 
-- CURRENT: clean up code for generation now it works well
-- CURRENT: Add more logos
+# Minipills 
 
-lib/pill/
+[![LETSGO](https://minipills.pelsy.net/favicon.png)](https://minipills.pelsy.net)
 
-- get_text(text, color, offset, shadow)
-- get_img(svg, color, shadow)
-- get_one_pill_back, get_two_pills_back, get_three_pills_back
+**Minipills** is a service for creating custom "pills" or badges that include text and logos. Minipills allows users to generate visually appealing badges for their projects. With a database of over 3100 logos, users can not only choose from a vast collection but also propose their own logos through the plateform !
+
+## Features
+- Badge Generation: Create badges with custom text and logos.
+- Extensive Logo Library: Access over 3000 logos.
+- Community Contributions: Propose your own logos and contribute to the logo database.
+- Easy Customization: Adjust colors, text, logo, shadows, and other parameters to create a badge that fits your needs.
+- Multiple support: You can choose the pill you want, up to 3 segments, svg or png or simply brand only.
+
+## Where ?
+
+Visit Minipills [here](https://minipills.pelsy.net)
+
+
+## Usage/Examples
+
+Basic text
+```md
+1t param means first text
+https://minipills.pelsy.net/pill?1t=Minipills
+```
+
+[![To minipills](https://minipills.pelsy.net/pill?1t=Minipills)](https://minipills.pelsy.net)
+
+
+Colors ?
+
+```md
+1t param means first text
+1c param means first color
+1c param means first background color
+https://minipills.pelsy.net/pill?1t=Minipills&1c=212121&1bc=eeeeee
+```
+
+[![To minipills](https://minipills.pelsy.net/pill?1t=Minipills&1c=212121&1bc=eeeeee)](https://minipills.pelsy.net)
+
+Segments ?
+
+```md
+put a 2 or 3 instead of 1 to select the pill sector you want to change !
+https://minipills.pelsy.net/pill?1t=Minipills&1c=212121&1bc=eeeeee&2t=is&3t=AWESOME
+```
+
+[![To minipills](https://minipills.pelsy.net/pill?1t=Minipills&1c=212121&1bc=eeeeee&2t=is&3t=AWESOME)](https://minipills.pelsy.net)
+
+More ?
+
+```md
+it's easy !
+l  for a logo
+lc for logo color
+https://minipills.pelsy.net/pill?1t=Minipills&1c=212121&1bc=eeeeee&2t=is&3t=AWESOME&l=minipills&lc=e3a300
+```
+
+[![To minipills](https://minipills.pelsy.net/pill?1t=Minipills&1c=212121&1bc=eeeeee&2t=is&3t=AWESOME&l=minipills&lc=e3a300)](https://minipills.pelsy.net)
+
+## Documentation
+
+[Minipills documentation](https://minipills.pelsy.net/docs)
+
+
+## Authors
+
+- [@Naorah](https://www.github.com/Naorah)
+
