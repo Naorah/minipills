@@ -14,23 +14,23 @@ datasource db {
 }
 
 model Logo {
-  id             Int        @id @default(autoincrement())
-  name           String     @unique
-  display_name   String
-  logo           String     @unique
-  createdAt      DateTime   @default(now())
-  color          String     @default("#00000")
+  id              Int        @id @default(autoincrement())
+  name            String     @unique
+  display_name    String
+  logo            String     @unique
+  created_at      DateTime   @default(now())
+  color           String     @default("#00000")
 }
 
 model LogoSubmission {
-  id            Int        @id @default(autoincrement())
-  name          String
-  display_name  String
-  logo          String     @unique
-  color         String
-  discord       String
-  createdAt     DateTime   @default(now())
-  validatedAt   DateTime?
+  id             Int        @id @default(autoincrement())
+  name           String
+  display_name   String
+  logo           String     @unique
+  color          String
+  discord        String?
+  created_at     DateTime   @default(now())
+  validated_at   DateTime?
 }
 
 model DailyPillStats {
@@ -41,9 +41,21 @@ model DailyPillStats {
   @@id([date, type])
 }
 
-model Validator {
-  id            String @id @default(uuid())
-  username      String @unique
-  passwordHash  String
-  userAuthToken String @unique
+model User {
+  id              String @id @default(uuid())
+  username        String @unique
+  password_hash   String
+  user_auth_token String @unique
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  role       Roles @relation(fields: [role_id], references: [id])
+  role_id    Int
+}
+
+model Roles {
+  id   Int    @id @default(autoincrement())
+  name String @unique
+  User User[]
 }
