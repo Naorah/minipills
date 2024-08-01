@@ -66,6 +66,17 @@ https://minipills.pelsy.net/pill?1t=Minipills&1c=212121&1bc=eeeeee&2t=is&3t=AWES
 
 [![To minipills](https://minipills.pelsy.net/pill?1t=Minipills&1c=212121&1bc=eeeeee&2t=is&3t=AWESOME&l=minipills&lc=e3a300)](https://minipills.pelsy.net)
 
+## Speed
+
+This speed test has been realised with the tests/speedtest.py file on 200 pills/badge generation with different texts each time and each on a dual-pill
+
+These lines are the direct output from the script when ran:
+
+- Average response time for Minipills:    0.10796431183815003s
+- Average response time for Shield.io:    0.17955726027488708s
+- Average response time for Badgen.net:   0.36115862846374513s
+- Average response time for Badger.space: 0.22709816813468933s
+
 ## Documentation
 
 [Minipills documentation](https://minipills.pelsy.net/docs)

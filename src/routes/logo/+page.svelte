@@ -1,5 +1,6 @@
 <script>
   import FadeAppear from '$lib/components/FadeAppear.svelte';
+  import { lazyLoad } from '$lib/LazyLoad.js'
   import { onMount } from 'svelte';
   import { writable } from 'svelte/store';
   import { PUBLIC_PILL_URL } from '$env/static/public';
@@ -13,11 +14,12 @@
   // loading and list parameters
   let isLoading = true;
   let offset = 0;
-  let limit = 50;
+  let limit = 100;
 
   // snacks scroll
   let toasted_snack = false;
   let scroll_value = 0;
+  const scrollThreshold = 0.80; // 80%
 
   // search box
   let name_search = "";
@@ -40,9 +42,16 @@
     // Guard if we're in search process
     if (name_search !== "") return;
     if (isLoading) return;
-    // Else load while scrolling for fluid nav
-    scroll_value += 1;
-    if (scroll_value == 5) {
+    // Obtenez la hauteur totale du document
+    const documentHeight = document.documentElement.scrollHeight;
+    // Obtenez la hauteur de la fenêtre visible
+    const windowHeight = window.innerHeight;
+    // Obtenez la position de défilement actuelle
+    const scrollTop = window.scrollY;
+    // Calculez le seuil de défilement
+    const scrollThresholdPosition = documentHeight * scrollThreshold;
+    // Vérifiez si la scrollbar a atteint ou dépassé le seuil
+    if (scrollTop + windowHeight >= scrollThresholdPosition) {
       offset += limit;
       loadLogos();
       scroll_value = 0
@@ -156,7 +165,7 @@
           <div class="logo-pill">
             <div on:click={() => copyToPaperClip(logo.logo)} class="svg-zone">
               <FadeAppear>
-                <img class="svg-display" src={`data:image/svg+xml;utf8,${logo.logo}`} alt="svg for {logo.name}"/>
+                <img use:lazyLoad class="svg-display" data-src={`data:image/svg+xml;utf8,${logo.logo}`} alt="svg for {logo.name}"/>
               </FadeAppear>
             </div>
 
