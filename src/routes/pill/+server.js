@@ -6,7 +6,7 @@ import { premadePill } from '$lib/PremadePill.js';
 import { updateDailyPillStats } from '$lib/PillStats.js'
 
 // isHexColor
-import { isHexColor, getLogoSvgByName, getFinalText } from '$lib/ColorUtil.js'
+import { isHexColor, getLogoSvgByName, getFinalText, scaleContent } from '$lib/ColorUtil.js'
 
 // PRISMA IMPORT
 import { PrismaClient } from '@prisma/client';
@@ -46,12 +46,13 @@ export async function GET({ url }) {
   // Properties
   let shadow = url.searchParams.get('s') != null ? true : false;
   let pillng = url.searchParams.get('pillng') != null ? true : false;
-  let size = url.searchParams.get('size')
+  let scale = url.searchParams.get('sc')
 
   // size check number
-  if (!(!isNaN(parseFloat(size)) && isFinite(size))) {
-    size = 1;
+  if (!(!isNaN(parseFloat(scale)) && isFinite(scale))) {
+    scale = 1;
   }
+  if (scale > 10) { scale = 10 }
 
   // New pill created !
   if (!pillng) {
@@ -112,17 +113,15 @@ export async function GET({ url }) {
 
   // generate SVG
   if (error) {
-    svgContent = two_pills("404", "ffffff", "212121", "Pill spreader misused", "ffffff", "a12613", null,null,null, pillng=pillng);
+    svgContent = two_pills("404", "ffffff", "212121", "Pill spreader misused", "ffffff", "a12613", null,null,null, pillng, scale);
   } else if (is_one_pill) {
     
-    svgContent = one_pill(first_text, first_color, first_background_color, logo_svg, logo_color, shadow, pillng);
+    svgContent = one_pill(first_text, first_color, first_background_color, logo_svg, logo_color, shadow, pillng, scale);
   } else if (is_two_pill) {
-    svgContent = two_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, logo_svg, logo_color, shadow, pillng);
+    svgContent = two_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, logo_svg, logo_color, shadow, pillng, scale);
   } else {
-    svgContent = three_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, third_text, third_color, third_background_color, logo_svg, logo_color, shadow, pillng);
+    svgContent = three_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, third_text, third_color, third_background_color, logo_svg, logo_color, shadow, pillng, scale);
   }
-
-  svgContent = svgContent
 
   // return the svg
   return new Response(svgContent, {

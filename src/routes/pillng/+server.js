@@ -25,7 +25,6 @@ export async function GET({ url }) {
 
     // Creation d'une image bitmap avec sharp
     const pngImage = await sharp(Buffer.from(data))
-      .resize({ height: 50 })
       .png()
       .toBuffer();
 

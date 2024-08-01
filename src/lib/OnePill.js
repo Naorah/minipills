@@ -3,7 +3,7 @@ import { getTextWidth, adjustColor } from '$lib/ColorUtil.js'
 /**
  * ONE PILL GENERATOR
  */
-export function one_pill(first_text, first_color, first_background_color, logo, logo_color, shadow, pillng=false) {
+export function one_pill(first_text, first_color, first_background_color, logo, logo_color, shadow, pillng=false, scale=1) {
   let stroke = 0;
   let strokeWidth = 0;
   let pillng_bonus_height = pillng ? 2 : 0
@@ -79,7 +79,7 @@ export function one_pill(first_text, first_color, first_background_color, logo, 
   }
 
   return `
-    <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 ${width} ${height}" width="${width*scale}" height="${height*scale}" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="first_gradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" style="stop-color:${gradientStart};stop-opacity:1" />
@@ -95,9 +95,9 @@ export function one_pill(first_text, first_color, first_background_color, logo, 
         stroke="${stroke}"
         stroke-width="${strokeWidth}"
       />
-      ${logo_shadow_final}
-      ${logo_final}
-      ${text_shadow}
+      ${logo_shadow_final ? logo_shadow_final : ''}
+      ${logo_final ? logo_final : ''}
+      ${text_shadow ? text_shadow : ''}
       <g transform="translate(${(width/2) + logo_aimed_size/2}, ${height/2+1+pillng_bonus_height})">
         <text
           dominant-baseline="middle" 

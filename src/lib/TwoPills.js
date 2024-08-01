@@ -35,7 +35,7 @@ function getSecondPillData(width, height, radius) {
 /**
  * TWO PILLS GENERATOR
  */
-export function two_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, logo, logo_color, shadow, pillng=false) {
+export function two_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, logo, logo_color, shadow, pillng=false, scale=1) {
   let stroke = 0;
   let strokeWidth = 0;
   let pillng_bonus_height = pillng ? 2 : 0
@@ -134,7 +134,7 @@ export function two_pills(first_text, first_color, first_background_color, secon
   }
   
   return `
-    <svg width="${width+width2}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 ${width+width2} ${height}" width="${(width+width2)*scale}" height="${height*scale}" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="first_gradient" x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" style="stop-color:${first_gradientStart};stop-opacity:1" />

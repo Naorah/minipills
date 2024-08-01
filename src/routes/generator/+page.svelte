@@ -23,7 +23,8 @@
     "3bc": "",
     "l": "",
     "lc": "",
-    "s": false
+    "s": false,
+    "sc": "1"
   };
   $: if (pill_bindings) {
     refresh_link();
@@ -279,6 +280,17 @@
               OPTIONNAL
             </div>
             <div class="break"></div>
+          </div>
+
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              Scale ( 2 )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['sc']}/>
           </div>
 
         </div>

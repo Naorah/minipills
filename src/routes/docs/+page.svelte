@@ -134,6 +134,15 @@
       example: "&lc=ffffff",
     },
     {
+      name: "sc",
+      type: "float",
+      required: false,
+      default: "1.0",
+      title: "Pill scale",
+      description: "Size of the pill. The maximum is 10.",
+      example: "&sc=2",
+    },
+    {
       name: "premade",
       type: "string",
       required: true,
