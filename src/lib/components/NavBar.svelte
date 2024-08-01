@@ -42,7 +42,7 @@
     </div>
   </label>
   <div class="wrapper">
-    <ul>
+    <ul class="no-pl">
       <li><a on:click={toggleMenu} href="/" class="nav-link">Home</a></li>
       <li><a on:click={toggleMenu} href="/docs">Documentation</a></li>
       <li><a on:click={toggleMenu} href="/generator">Generator</a></li>
@@ -54,6 +54,10 @@
 </div>
 
 <style>
+  .no-pl {
+    padding-inline-start: 0;
+  }
+
   .nav-icon {
     display: flex;
     align-items: center;

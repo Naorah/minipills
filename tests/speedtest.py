@@ -33,13 +33,16 @@ def new_text():
 
 
 urls = [
-  "https://minipills.pelsy.net/pill?1t=coucou",
-  "https://img.shields.io/badge/any_text_i_like-grey",
-  "https://badgen.net/badge/this/test"
+  {"name": "Minipills",  "url": "https://minipills.pelsy.net/pill?1t=coucou"},
+  {"name": "Shield.io",  "url": "https://img.shields.io/badge/any_text_i_like-grey"},
+  {"name": "Badgen.net", "url": "https://badgen.net/badge/this/test"},
+  {"name": "Badger.space",  "url": "https://badgers.space/badge/server/offline"},
+  {"name": "Badger.space",  "url": "https://badgers.space/badge/server/offline"}
 ]
 
 for url in urls:
   time_keeper = []
-  for i in range(0,100):
+  for i in range(0,200):
     time_keeper.append(get_response_time(url))
+    time.sleep(0.2)
   print(f"Temps de réponse pour {url}: {statistics.mean(time_keeper)}")
