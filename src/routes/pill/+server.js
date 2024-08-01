@@ -62,7 +62,7 @@ export async function GET({ url }) {
   // Premade
   let premade = url.searchParams.get("premade")
   if (premade) {
-    const pill = await premadePill(premade, pillng);
+    const pill = await premadePill(premade, pillng, scale);
     // return the svg
     return new Response(pill, {
       headers: {
