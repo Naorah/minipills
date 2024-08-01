@@ -43,6 +43,9 @@
 - DONE: Logo only with color
 - DONE: logo page under the menu
 - DONE: page with pill generation complete tutorial & generators ( 1pill 2pills 3pills shadow logo )
+- DONE: clean up code for generation now it works well
+- DONE: testing
 
-- CURRENT: clean up code for generation now it works well
 - CURRENT: Add more logos
+- CURRENT: add md docs
+- BETTER: md

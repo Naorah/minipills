@@ -1,115 +1,107 @@
 import { getTextWidth, adjustColor } from '$lib/ColorUtil.js'
+import { createGradient, pill_padding } from '$lib/PillBuilder.js'
 
-/**
- * ONE PILL GENERATOR
- */
+//
+// one_pill : function : generate a simple pill
+//
+// @param : first_text              : str  : first text
+// @param : first_color             : str  : first text color without the #
+// @param : first_background_color  : str  : first background color without the #
+// @param : logo                    : str  : logo svg content
+// @param : logo_color              : str  : logo color without the #
+// @param : shadow                  : bool : if the pill has shadows on text & logo
+// @param : pillng                  : str  : if the pill will be a png ( text must be lower )
+// @param : scale                   : int  : scale for the image size
+//
 export function one_pill(first_text, first_color, first_background_color, logo, logo_color, shadow, pillng=false, scale=1) {
-  let stroke = 0;
-  let strokeWidth = 0;
-  let pillng_bonus_height = pillng ? 3 : 0
+  // Format colors
+  first_color = `#${first_color}`;
+  const gradient_start = adjustColor(`#${first_background_color}`, 20);
+  const gradient_end = adjustColor(`#${first_background_color}`, -20);
 
-  //
-  // ############# TEXT COLOR BUILDING #############
-  //
-  first_color = "#"+first_color;
-  
-  //
-  // ############# GRADIENT BUILDING #############
-  //
-  let gradientStart;
-  let gradientEnd;
-  gradientStart = adjustColor("#"+first_background_color, 8);
-  gradientEnd = adjustColor("#"+first_background_color, -8);
-  
-  //
-  // ############# RECTANGLE BUILDING #############
-  //
-  let width;
-  let height = 22;
-  const radius = 5
+  // Dimensions and styling
+  const height = 22;
+  const radius = 5;
+  const logoWidth = 24;
+  const logoAimedSize = logo ? 18 : 0;
+  const pillngBonusHeight = pillng ? 3 : 0;
+  const scaleFactor = logoAimedSize / logoWidth;
+  const textWidth = getTextWidth(first_text);
+  let width = textWidth + pill_padding + logoAimedSize + (logo ? 5 : 0);
 
-  width = getTextWidth(first_text) + 10;
+  const rect = `
+    <rect 
+      width="${width}"
+      height="${height}"
+      rx="${radius}"
+      ry="${radius}"
+      fill="url(#first_gradient)"
+      stroke="0"
+      stroke-width="0"
+    />
+  `;
 
-  //
-  // ############# LOGO HANDLER #############
-  //
-  let logo_width = 24; // 24 is basic logo size
-  let logo_aimed_size = 0;
-  let logo_final;
-  let scaleFactor;
+  // Logo handling
+  let logoFinal = '';
   if (logo) {
-    logo_aimed_size = 18;
-    scaleFactor = logo_aimed_size/logo_width; 
-    width += logo_aimed_size + 5 // logo space + margin right
-    logo_final = `
-      <g transform="scale(${scaleFactor}) translate(${((-width/2) + logo_aimed_size)}, 3)">
+    logoFinal = `
+      <g transform="scale(${scaleFactor}) translate(${(-width / 2) + logoAimedSize}, 3)">
         ${logo.replace('<svg', `<svg fill="${logo_color}"`)}
       </g>
-    `
+    `;
   }
 
-  //
-  // ############# SHADOW HANDLER #############
-  //
-  let logo_shadow_final;
-  let text_shadow;
-  if(shadow) {
-    let text_shadow_color = adjustColor(first_color, -100);
-    text_shadow = `
-    <text
-    x="${(width/2) + logo_aimed_size/2}"
-    y="57%"
-    dominant-baseline="middle" 
-    text-anchor="middle" 
-    fill="${text_shadow_color}"
-    font-size="12"
-    font-family="Arial"
-    >
-    ${first_text}
-    </text>
-    `
+  // Shadows handling
+  let logoShadowFinal = '';
+  let textShadow = '';
+  if (shadow) {
+    const textShadowColor = adjustColor(first_color, -100);
+    textShadow = `
+      <text
+        x="${(width / 2) + (logoAimedSize / 2)}"
+        y="57%"
+        dominant-baseline="middle"
+        text-anchor="middle"
+        fill="${textShadowColor}"
+        font-size="12"
+        font-family="Arial"
+      >
+        ${first_text}
+      </text>
+    `;
     if (logo) {
-      let logo_shadow_color = adjustColor(logo_color, -100);
-      logo_shadow_final = `
-        <g transform="scale(${scaleFactor}) translate(${((-width/2) + logo_aimed_size)}, 3.8)">
-          ${logo.replace('<svg', `<svg fill="${logo_shadow_color}"`)}
+      const logoShadowColor = adjustColor(logo_color, -100);
+      logoShadowFinal = `
+        <g transform="scale(${scaleFactor}) translate(${(-width / 2) + logoAimedSize}, 3.8)">
+          ${logo.replace('<svg', `<svg fill="${logoShadowColor}"`)}
         </g>
-      `
+      `;
     }
   }
 
-  return `
-    <svg viewBox="0 0 ${width} ${height}" width="${width*scale}" height="${height*scale}" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="first_gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" style="stop-color:${gradientStart};stop-opacity:1" />
-          <stop offset="100%" style="stop-color:${gradientEnd};stop-opacity:1" />
-        </linearGradient>
-      </defs>
-      <rect 
-        width="${width}"
-        height="${height}"
-        rx="${radius}"
-        ry="${radius}"
-        fill="${`url(#first_gradient)`}"
-        stroke="${stroke}"
-        stroke-width="${strokeWidth}"
-      />
-      ${logo_shadow_final ? logo_shadow_final : ''}
-      ${logo_final ? logo_final : ''}
-      ${text_shadow ? text_shadow : ''}
-      <g transform="translate(${(width/2) + logo_aimed_size/2}, ${height/2+1+pillng_bonus_height})">
-        <text
-          dominant-baseline="middle" 
-          text-anchor="middle" 
-          fill="${first_color}"
-          font-size="12"
-          font-family="Arial"
-        >
-          ${first_text}
-        </text>
-      </g>
-    </svg>
-  `
-}
+  // Main text
+  const mainText = `
+    <g transform="translate(${(width / 2) + (logoAimedSize / 2)}, ${height / 2 + 1 + pillngBonusHeight})">
+      <text
+        dominant-baseline="middle"
+        text-anchor="middle"
+        fill="${first_color}"
+        font-size="12"
+        font-family="Arial"
+      >
+        ${first_text}
+      </text>
+    </g>
+  `;
 
+  return `
+    <svg viewBox="0 0 ${width} ${height}" width="${width * scale}" height="${height * scale}" xmlns="http://www.w3.org/2000/svg">
+      ${createGradient('first_gradient', gradient_start, gradient_end)}
+      ${rect}
+      ${logoShadowFinal}
+      ${logoFinal}
+      ${textShadow}
+      ${mainText}
+    </svg>
+  `;
+}
