@@ -4,6 +4,14 @@ import { createCanvas } from 'canvas';
 
 const prisma = new PrismaClient();
 
+//
+//
+// Get the text width from differents params
+// @param : text : text to check
+// @param : fontSize : text size
+// @param : fontFamily : typo
+//
+//
 export function getTextWidth(text, fontSize=12, fontFamily = 'Arial') {
   // Charger la police
   try {
@@ -23,6 +31,11 @@ export function getTextWidth(text, fontSize=12, fontFamily = 'Arial') {
   }
 }
 
+//
+// Adjust color in rgb with the adjustment delta
+// @param : color : base color to process
+// @param : adjustment : delta
+//
 export function adjustColor(color, adjustment) {
   // Convert hex color to RGB
   const hexToRgb = (hex) => {
@@ -55,6 +68,7 @@ export function adjustColor(color, adjustment) {
 
 //
 // isHexColor : function : tell if the given color is hexadecimal
+// @param : str : color to check
 //
 export function isHexColor(str) {
   const hexColorPattern = /^([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
@@ -86,6 +100,12 @@ export async function getLogoSvgByName(name) {
   }
 }
 
+//
+//
+// Retrieve the logo by name
+// @param : name : name of the logo
+//
+//
 export async function getLogoByName(name) {
   try {
     const logoRecord = await prisma.logo.findUnique({
@@ -106,4 +126,22 @@ export async function getLogoByName(name) {
   } finally {
     await prisma.$disconnect();
   }
+}
+
+//
+//
+// Get the final text to build, with the _ treatement
+// if __ then it's a _
+// if _ then it's a space
+// @param : text : text to process
+//
+export function getFinalText(text) {
+  if (text) {
+    const spaced_text = text.replaceAll('_', ' ');
+    const final_text = spaced_text.replaceAll('  ', '_');
+    return final_text;
+  } else {
+    return text;
+  }
+  
 }

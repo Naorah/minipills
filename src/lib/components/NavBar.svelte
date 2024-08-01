@@ -91,6 +91,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /** Highlight when clicked */
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    user-select: none;
   }
   #active:checked ~ .menu-btn{
     color: #fff;

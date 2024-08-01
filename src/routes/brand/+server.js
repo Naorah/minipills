@@ -31,8 +31,6 @@ export async function GET({ url }) {
     error = true;
   }
 
-  console.log(logo)
-
   // init svgContent
   let svgContent;
 
@@ -40,7 +38,7 @@ export async function GET({ url }) {
   if (!logo_svg) {
     svgContent = two_pills("404", "ffffff", "212121", "Pill spreader misused", "ffffff", "a12613", null,null,null);
   } else {
-    svgContent = logo_svg.replace('<svg', `<svg fill="${logo_color} width="24"`)
+    svgContent = logo_svg.replace('<svg', `<svg fill="${logo_color}"`)
   }
 
   // return the svg

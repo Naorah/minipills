@@ -94,7 +94,7 @@
     <h1 class="mp-h1 big">MINI PILLS</h1>
 
     <div class="mp-mb">
-      <h2 class="mp-spread bolding mp-big-text">
+      <h2 class="mp-spread bolding mp-big-text hide-phone">
         <div>
           YOUR <span class="w-text bolding">DOSE</span> OF DATA
         </div>

@@ -2,12 +2,15 @@
   import { PUBLIC_PILL_URL } from '$env/static/public';
   import Icon from '@iconify/svelte';
 
+  // Links, parameters & final links
   let pill_link = PUBLIC_PILL_URL+"/pill";
   let pill_parameters = ""
   let final_link = pill_link;
 
+  // copy button caption
   let copy_caption = "COPY";
 
+  // binding pills
   let pill_bindings = {
     "1t": "",
     "1c": "",
@@ -26,6 +29,10 @@
     refresh_link();
   }
 
+  //
+  // refresh links
+  // refresh link & rebuild the new one
+  //
   function refresh_link() {
     final_link = pill_link
     let count = 0;
@@ -38,6 +45,9 @@
     }
   }
 
+  //
+  // Copy to paperclip function
+  //
   function copyToPaperClip(text) {
 
     navigator.clipboard.writeText(text).then(
@@ -54,6 +64,10 @@
     }, 2000);
   }
 
+
+  //
+  // link reset when hit the reset button
+  //
   function reset_link() {
     final_link = PUBLIC_PILL_URL+"/pill?";
     shadow_styles = "border: solid 2px #212121";
@@ -63,7 +77,9 @@
     }
   }
 
-
+  //
+  // Toggle shadow place
+  //
   let shadow_styles = 'border: solid 2px #212121';
   function toggleShadow() {
     pill_bindings['s'] = !pill_bindings['s']
@@ -74,6 +90,25 @@
       shadow_styles = "border: solid 2px #212121";
     }
     refresh_link();
+  }
+
+  //
+  // toggle more_gen
+  //
+
+  // styling
+  let toggled = false;
+  let more_gen_btn = "";
+  let more_gen_element = "display: none;";
+  function toggleMore() {
+    toggled = !toggled
+    if (toggled) {
+      more_gen_btn = 'display: none;';
+      more_gen_element = "";
+    } else {
+      more_gen_element = 'display: none;';
+      more_gen_btn = "";
+    }
   }
 
 </script>
@@ -118,124 +153,134 @@
           <input class="mp-input max-width" bind:value={pill_bindings['1t']}/>
         </div>
 
-        <div class="generator-card mp-flex-container">
-          <div class="generator-title">
-            First color ( FFFFFF )
-          </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
-          </div>
-          <div class="break"></div>
-          <input class="mp-input max-width" bind:value={pill_bindings['1c']}/>
+        <div style={more_gen_btn}>
+          <button class="more-param" on:click={toggleMore}>
+            Display more parameters
+          </button>
         </div>
 
-        <div class="generator-card mp-flex-container">
-          <div class="generator-title">
-            First background ( FFFFFF )
-          </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
-          </div>
-          <div class="break"></div>
-          <input class="mp-input max-width" bind:value={pill_bindings['1bc']}/>
-        </div>
+        <div style={more_gen_element}>
 
-        <div class="generator-card mp-flex-container">
-          <div class="generator-title">
-            Second text ( Hey ! )
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              First color ( FFFFFF )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['1c']}/>
           </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
+  
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              First background ( FFFFFF )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['1bc']}/>
           </div>
-          <div class="break"></div>
-          <input class="mp-input max-width" bind:value={pill_bindings['2t']}/>
-        </div>
+  
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              Second text ( Hey ! )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['2t']}/>
+          </div>
+  
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              Second color ( FFFFFF )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['2c']}/>
+          </div>
+  
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              Second background ( FFFFFF )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['2bc']}/>
+          </div>
+  
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              Third text ( Hey ! )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['3t']}/>
+          </div>
+  
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              Third color ( FFFFFF )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['3c']}/>
+          </div>
+  
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              Third background ( FFFFFF )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['3bc']}/>
+          </div>
+  
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              Logo ( minipills )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['l']}/>
+          </div>
+  
+          <div class="generator-card mp-flex-container">
+            <div class="generator-title">
+              Logo color ( FFFFF )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+            <input class="mp-input max-width" bind:value={pill_bindings['lc']}/>
+          </div>
+  
+          <div style="{shadow_styles}" class="generator-card mp-flex-container" on:click={toggleShadow}>
+            <div class="generator-title">
+              Shadow ( {pill_bindings['s'] ? 'ON' : 'OFF'} )
+            </div>
+            <div class="mp-align-right bolding mp-optionnal">
+              OPTIONNAL
+            </div>
+            <div class="break"></div>
+          </div>
 
-        <div class="generator-card mp-flex-container">
-          <div class="generator-title">
-            Second color ( FFFFFF )
-          </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
-          </div>
-          <div class="break"></div>
-          <input class="mp-input max-width" bind:value={pill_bindings['2c']}/>
-        </div>
-
-        <div class="generator-card mp-flex-container">
-          <div class="generator-title">
-            Second background ( FFFFFF )
-          </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
-          </div>
-          <div class="break"></div>
-          <input class="mp-input max-width" bind:value={pill_bindings['2bc']}/>
-        </div>
-
-        <div class="generator-card mp-flex-container">
-          <div class="generator-title">
-            Third text ( Hey ! )
-          </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
-          </div>
-          <div class="break"></div>
-          <input class="mp-input max-width" bind:value={pill_bindings['3t']}/>
-        </div>
-
-        <div class="generator-card mp-flex-container">
-          <div class="generator-title">
-            Third color ( FFFFFF )
-          </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
-          </div>
-          <div class="break"></div>
-          <input class="mp-input max-width" bind:value={pill_bindings['3c']}/>
-        </div>
-
-        <div class="generator-card mp-flex-container">
-          <div class="generator-title">
-            Third background ( FFFFFF )
-          </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
-          </div>
-          <div class="break"></div>
-          <input class="mp-input max-width" bind:value={pill_bindings['3bc']}/>
-        </div>
-
-        <div class="generator-card mp-flex-container">
-          <div class="generator-title">
-            Logo ( minipills )
-          </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
-          </div>
-          <div class="break"></div>
-          <input class="mp-input max-width" bind:value={pill_bindings['l']}/>
-        </div>
-
-        <div class="generator-card mp-flex-container">
-          <div class="generator-title">
-            Logo color ( FFFFF )
-          </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
-          </div>
-          <div class="break"></div>
-          <input class="mp-input max-width" bind:value={pill_bindings['lc']}/>
-        </div>
-
-        <div style="{shadow_styles}" class="generator-card mp-flex-container" on:click={toggleShadow}>
-          <div class="generator-title">
-            Shadow ( {pill_bindings['s'] ? 'ON' : 'OFF'} )
-          </div>
-          <div class="mp-align-right bolding mp-optionnal">
-            OPTIONNAL
-          </div>
-          <div class="break"></div>
         </div>
 
       </div>
@@ -301,4 +346,19 @@
     background-color: #282828;
     border-radius: 5px;
   }
+
+  .more-param {
+    padding: 1rem 2rem 1rem 2rem;
+    background-color: var(--color);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: 0.5s;
+  }
+
+  .more-param:hover {
+    background-color: rgb(105, 0, 0);
+    cursor: pointer;
+  }
+
 </style>

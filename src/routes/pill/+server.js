@@ -6,7 +6,7 @@ import { premadePill } from '$lib/PremadePill.js';
 import { updateDailyPillStats } from '$lib/PillStats.js'
 
 // isHexColor
-import { isHexColor, getLogoSvgByName } from '$lib/ColorUtil.js'
+import { isHexColor, getLogoSvgByName, getFinalText } from '$lib/ColorUtil.js'
 
 // PRISMA IMPORT
 import { PrismaClient } from '@prisma/client';
@@ -22,16 +22,19 @@ export async function GET({ url }) {
 
   // First pill
   let first_text = url.searchParams.get('1t');
+  first_text = getFinalText(first_text)
   let first_color = url.searchParams.get('1c');
   let first_background_color = url.searchParams.get('1bc');
 
   // Second pill
   let second_text = url.searchParams.get('2t');
+  second_text = getFinalText(second_text)
   let second_color = url.searchParams.get('2c');
   let second_background_color = url.searchParams.get('2bc');
 
   // Third pill
   let third_text = url.searchParams.get('3t');
+  third_text = getFinalText(third_text)
   let third_color = url.searchParams.get('3c');
   let third_background_color = url.searchParams.get('3bc');
 
@@ -43,6 +46,12 @@ export async function GET({ url }) {
   // Properties
   let shadow = url.searchParams.get('s') != null ? true : false;
   let pillng = url.searchParams.get('pillng') != null ? true : false;
+  let size = url.searchParams.get('size')
+
+  // size check number
+  if (!(!isNaN(parseFloat(size)) && isFinite(size))) {
+    size = 1;
+  }
 
   // New pill created !
   if (!pillng) {
@@ -112,6 +121,8 @@ export async function GET({ url }) {
   } else {
     svgContent = three_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, third_text, third_color, third_background_color, logo_svg, logo_color, shadow, pillng);
   }
+
+  svgContent = svgContent
 
   // return the svg
   return new Response(svgContent, {

@@ -46,9 +46,3 @@
 
 - CURRENT: clean up code for generation now it works well
 - CURRENT: Add more logos
-
-lib/pill/
-
-- get_text(text, color, offset, shadow)
-- get_img(svg, color, shadow)
-- get_one_pill_back, get_two_pills_back, get_three_pills_back

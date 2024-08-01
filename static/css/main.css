@@ -286,6 +286,10 @@ tr {
 **/
 @media (max-width: 1000px) {
 
+  .hide-phone {
+    display: none;
+  }
+
   .brand-img {
     height: 200px;
   }

@@ -11,10 +11,17 @@
 - Community Contributions: Propose your own logos and contribute to the logo database.
 - Easy Customization: Adjust colors, text, logo, shadows, and other parameters to create a badge that fits your needs.
 - Multiple support: You can choose the pill you want, up to 3 segments, svg or png or simply brand only.
+- Adaptative: Use it on svg in markdown, your website, your online projects, png on discord, chats or other projects !
 
 ## Where ?
 
-Visit Minipills [here](https://minipills.pelsy.net)
+Check minipills.
+
+[![To minipills](https://minipills.pelsy.net/pill?1t=Join&2t=minipills&l=minipills&3t=here)](https://minipills.pelsy.net)
+
+Join the community and follow your logo submission
+
+[![To minipills](https://minipills.pelsy.net/pill?1t=Join&2t=discord&l=discord&3t=here&2bc=5865F2)](https://discord.gg/dSnjfBAaQp)
 
 
 ## Usage/Examples
@@ -67,4 +74,3 @@ https://minipills.pelsy.net/pill?1t=Minipills&1c=212121&1bc=eeeeee&2t=is&3t=AWES
 ## Authors
 
 - [@Naorah](https://www.github.com/Naorah)
-

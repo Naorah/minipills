@@ -243,6 +243,74 @@
     {/each}
 
     <h2 class="w-text">
+      Spacing caution
+    </h2>
+
+    <!-- STRING CAUTION -->
+    <table class="w-text doc-table">
+      <thead>
+        <tr>
+          <th class="mp-header-row">
+            <div class="mp-flex-container">
+              <!-- NAME & REQUIRED -->
+              <span class="mp-param-title">
+                String caution
+              </span>               
+
+              <span class="bolding mp-optionnal mp-align-right">
+                BE AWARE
+              </span>
+            </div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+
+            <div class="bolding">
+              Spacing in url
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div>
+              <div class="doc-row">
+                Spacing in url can be done with spaces, %20 or underscores _. 
+              </div>
+              <div class="doc-row">
+                <span class="mp-ghost">One underscore</span> is a space.
+              </div>
+              <div class="doc-row">
+                <span class="mp-ghost">Two underscores</span> will create a unique underscore.
+              </div>
+            </div>
+
+            <!-- EXAMPLE -->
+            <div class="doc-row">
+              <span>
+                Example
+              </span>
+              : 
+              <a class="mp-ghost mp-link" href="{PUBLIC_PILL_URL}/pill?1t=Hello_how_are_you_?" target="_blank">
+                {PUBLIC_PILL_URL}/pill?1t=With_one_underscore_?
+              </a>
+            </div>
+            <div class="doc-row">
+              <span>
+                Example
+              </span>
+              : 
+              <a class="mp-ghost mp-link" href="{PUBLIC_PILL_URL}/pill?1t=With__two__underscores__?" target="_blank">
+                {PUBLIC_PILL_URL}/pill?1t=With__two__underscores__?
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="w-text">
       Pill parameters
     </h2>
 
