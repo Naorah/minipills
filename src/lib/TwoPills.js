@@ -38,7 +38,7 @@ function getSecondPillData(width, height, radius) {
 export function two_pills(first_text, first_color, first_background_color, second_text, second_color, second_background_color, logo, logo_color, shadow, pillng=false, scale=1) {
   let stroke = 0;
   let strokeWidth = 0;
-  let pillng_bonus_height = pillng ? 2 : 0
+  let pillng_bonus_height = pillng ? 3 : 0
 
   //
   // ############# TEXT COLOR BUILDING #############

@@ -65,7 +65,7 @@ export function three_pills(
                           ) {
   let stroke = 0;
   let strokeWidth = 0;
-  let pillng_bonus_height = pillng ? 2 : 0
+  let pillng_bonus_height = pillng ? 3 : 0
 
   //
   // ############# TEXT COLOR BUILDING #############
