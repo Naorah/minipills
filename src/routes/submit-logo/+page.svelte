@@ -1,5 +1,5 @@
 <script>
-  import { PUBLIC_PILL_URL } from '$env/static/public';
+  import { PUBLIC_PILL_URL, PUBLIC_DISCORD_URL } from '$env/static/public';
   import { writable } from 'svelte/store';
   import { onMount } from 'svelte';
   import { page } from '$app/stores'
@@ -220,6 +220,20 @@
 
 <section class="bg-back">
   <div class="mp-search-container mp-search">
+    <h2 class="w-text">Validation note</h2>
+    <div class="w-text">
+      <div>
+        All requests will be processed.
+      </div>
+      <div>
+        In order to have a uniform database for our logos, requests with an svg having a viewBox of 0 0 24 24 will be given priority.
+      </div>
+      <div>
+        You can follow their validation directly from the <a href={PUBLIC_DISCORD_URL} class="mp-ghost" target="_blank">minipills discord</a>
+      </div>
+    </div>
+
+
     <h2 class="w-text">Submit a Logo</h2>
     <form on:submit={submitLogo}>
       <label class="w-text">

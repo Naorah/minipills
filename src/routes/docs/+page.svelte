@@ -441,12 +441,6 @@
     margin-left: auto;
   }
 
-  .mp-ghost {
-    background-color: #4d4d4d;
-    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
-    border-radius: 5px;
-  }
-
   .mp-required {
     color: #f8af40;
   }

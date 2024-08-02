@@ -1,6 +1,8 @@
 <script>
   import { PUBLIC_PILL_URL } from '$env/static/public';
   import { lazyLoad } from '$lib/LazyLoad.js'
+  import Icon from '@iconify/svelte';
+
   let basic_link= PUBLIC_PILL_URL
   let pill_link = PUBLIC_PILL_URL+"/pill?"
 
@@ -194,56 +196,11 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
 
-    <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=I really&1bc=a12613" alt="pill-test">
-
-    <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=want&1bc=a12613" alt="pill-test">
-
-    <img use:lazyLoad src="{PUBLIC_PILL_URL}/pill?1t=to test !&1bc=a12613" alt="pill-test">
-
-    <h2 class="mp-how">Compact Pills for Powerful Information</h2>
-
-    <div class="mp-description w-text">
-
-      <div class="grid-container">
-        <div class="grid-item">
-          <div class="mp-explain-img">
-            <img use:lazyLoad height=150 src="/svg/fast.svg" alt="amplify"/>
-          </div>
-          <div class="mp-grid-title">
-            VERY FAST
-          </div>
-          <div class="mp-grid-description">
-            A pill <span class="bolding highlight">delivered</span> in just a hand of <span class="bolding highlight">milliseconds</span>
-          </div>
-        </div>
-        <div class="grid-item">
-          <div class="mp-explain-img">
-            <img use:lazyLoad height=150 src="/svg/multi.svg" alt="amplify"/>
-          </div>
-          <div class="mp-grid-title">
-            MULTI USAGE
-          </div>
-          <div class="mp-grid-description">
-            <div>Need <span class="bolding highlight">SVG</span> ? I got it ! </div>
-            <div>Need <span class="bolding highlight">PNG</span> ?  I got it ! </div>
-            <div>Need <span class="bolding highlight">customisation</span> ? Just guess !</div>
-          </div>
-        </div>
-        <div class="grid-item">
-          <div class="mp-explain-img">
-            <img use:lazyLoad height=150 src="/svg/refix.svg" alt="amplify"/>
-          </div>
-          <div class="mp-grid-title">
-            GET A FIX AGAIN
-          </div>
-          <div class="mp-grid-description">
-            I know you're already <span class="bolding highlight">addict</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
+<section class="bg-back">
+  <div class="mp-container">
     <h2 class="mp-how">Let's build a pill together</h2>
 
     <div class="w-text">
@@ -309,7 +266,193 @@
   </div>
 </section>
 
+<section class="bg-back">
+  <div class="mp-container">
+    <h2 class="mp-how">Compact Pills for Powerful Information</h2>
+  
+    <div class="mp-description w-text">
+  
+      <div class="grid-container">
+        <div class="grid-item">
+          <div class="mp-explain-img">
+            <img use:lazyLoad height=150 src="/svg/fast.svg" alt="amplify"/>
+          </div>
+          <div class="mp-grid-title">
+            VERY FAST
+          </div>
+          <div class="mp-grid-description">
+            A pill <span class="bolding highlight">delivered</span> in just a hand of <span class="bolding highlight">milliseconds</span>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="mp-explain-img">
+            <img use:lazyLoad height=150 src="/svg/multi.svg" alt="amplify"/>
+          </div>
+          <div class="mp-grid-title">
+            MULTI USAGE
+          </div>
+          <div class="mp-grid-description">
+            <div>Need <span class="bolding highlight">SVG</span> ? I got it ! </div>
+            <div>Need <span class="bolding highlight">PNG</span> ?  I got it ! </div>
+            <div>Need <span class="bolding highlight">customisation</span> ? Just guess !</div>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="mp-explain-img">
+            <img use:lazyLoad height=150 src="/svg/refix.svg" alt="amplify"/>
+          </div>
+          <div class="mp-grid-title">
+            GET A FIX AGAIN
+          </div>
+          <div class="mp-grid-description">
+            I know you're already <span class="bolding highlight">addict</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="mp-container">
+    <div class="mp-description">
+
+      <h2>Where ?</h2>
+  
+      <div class="where-to-use-grid">
+        <!-- MARKDOWN INTEGRATION -->
+        <div class=" where-to-use-item">
+          <h3 class="icon-text-container">
+            <Icon style="color:var(--color);" width=30 icon="bi:markdown"/>
+            <span class="v-align ">
+              Markdown
+            </span>
+          </h3>
+          <div>
+            A <span class="bolding">simple</span> markdown integration to display a minipill and a link of your choice!
+          </div>
+          <div class="text-zone">
+            [![Minipills]({PUBLIC_PILL_URL}/pill?1t=link here)]({PUBLIC_PILL_URL})
+          </div>
+          <div>
+            Result
+            <a href="{PUBLIC_PILL_URL}">
+              <img src="{PUBLIC_PILL_URL}/pill?1t=link here" alt="minipills link"/>
+            </a>
+          </div>
+        </div>
+
+        <!-- DISPLAY DISCORD LINK -->
+        <div class=" where-to-use-item">
+          <h3 class="icon-text-container">
+            <Icon style="color:var(--color);" width=30 icon="ic:baseline-discord"/>
+            <span class="v-align">
+              Discord
+            </span>
+          </h3>
+  
+          <div>
+            Discord can't display svg, so create a <span class="bolding">png minipill</span> with /pillng !
+          </div>
+          <div>
+            <div>
+              <div class="text-zone">
+                {PUBLIC_PILL_URL}/pillng?1t=Hello everybody !
+              </div>
+              <div>
+                Result
+                <a href="{PUBLIC_PILL_URL}">
+                  <img src="{PUBLIC_PILL_URL}/pillng?1t=Hello everybody !" alt="minipills link"/>
+                </a>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+    
+        <div class=" where-to-use-item">
+          <h3 class="icon-text-container">
+            <Icon style="color:var(--color);" width=30 icon="fluent-mdl2:website"/>
+            <span class="v-align">
+              Websites
+            </span>
+          </h3>
+  
+          <div>
+            <span class="bolding">Instant integration</span> in img tags
+          </div>
+          <div>
+            <div>
+              <div class="text-zone">
+                &lt;img src=&quot;{PUBLIC_PILL_URL}/pill?1t=On an img tag !&quot; alt=&quot;minipills link&quot;/&gt;
+              </div>
+              <div>
+                Result
+                <a href="{PUBLIC_PILL_URL}">
+                  <img src="{PUBLIC_PILL_URL}/pill?1t=On an img tag !" alt="minipills link"/>
+                </a>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+    
+        <div class=" where-to-use-item">
+          <h3 class="icon-text-container">
+            <Icon style="color:var(--color);" width=30 icon="uil:presentation-line"/>
+            <span class="v-align">Presentations</span>
+          </h3>
+  
+          <div>
+            Generate png images and display them into your slides & powerpoints with /pillng !
+          </div>
+          <div class="text-zone">
+            Use the <span class="bolding">&sc=[number]</span> parameter to ask for a bigger image !
+          </div>
+          <div>
+            Result
+            <a href="{PUBLIC_PILL_URL}">
+              <img src="{PUBLIC_PILL_URL}/pillng?1t=EVEN BIGGER&sc=2" alt="minipills link"/>
+            </a>
+          </div>
+        </div>
+      </div>
+        
+      
+      <div>
+        <h3 class="icon-text-container">
+          <div>
+            <Icon style="color:var(--color);" width=20 icon="gg:more"/>
+            <span class="v-align">And more !</span>
+          </div>
+        </h3>
+        <div>
+          As bitmap and vector images, the places to use minipills are unlimited !
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <style>
+
+  .icon-text-container {
+    display: flex;
+    align-items: center; /* Aligne les éléments verticalement */
+    justify-content: center;
+  }
+
+  .v-align {
+    margin-left: 8px;
+  }
+
+  .text-zone {
+    font-size: 1rem;
+    border: 1px solid #4d4d4d;
+    border-radius: 5px;
+    margin: 0rem 5rem 0.5rem 5rem;
+    padding: 0.5rem 0rem 0.5rem 0rem;
+  }
 
   .final {
     line-height: 2rem;
@@ -332,7 +475,6 @@
     font-size: 2rem;
     font-weight: bold;
     padding-bottom: 0.2rem;
-    border-bottom: solid 1px #bdbdbd;
     margin-bottom: 1rem;
   }
 
@@ -350,14 +492,35 @@
 
   /* Style des éléments de la grille */
   .grid-item {
-    padding: 20px; /* Espacement intérieur pour les éléments */
-    margin-top: 3rem;
+    padding: 0px; /* Espacement intérieur pour les éléments */
+    margin-top: 1rem;
   }
 
-  /* Media query pour les écrans inférieurs à 750px */
+  .where-to-use-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 3 colonnes de largeur égale */
+    gap: 16px; /* Espacement entre les éléments de la grille */
+  }
+
+    /* Style des éléments de la grille */
+  .where-to-use-item {
+    padding: 0px; /* Espacement intérieur pour les éléments */
+    margin-top: 0.5rem;
+  }
+
+  /* Media query pour les écrans inférieurs à 1000px */
   @media (max-width: 1000px) {
     .grid-container {
-      grid-template-columns: 1fr; /* 1 colonne en mode mobile */
+      grid-template-columns: 1fr;
+    }
+
+    .where-to-use-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .text-zone {
+      margin: auto;
+      margin-bottom: 0.5rem;
     }
   }
 </style>
