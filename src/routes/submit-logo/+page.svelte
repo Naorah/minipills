@@ -285,7 +285,7 @@
                     from: {logo.discord}
                   </div>
                 {/if}
-                {#if $page.data.user.role == 'ADMIN'}
+                {#if $page.data?.user?.role == 'ADMIN'}
                   <button style="width: 100%" on:click={() => validate_submission(logo)}>
                     VALIDATE
                   </button>
