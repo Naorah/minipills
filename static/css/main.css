@@ -29,7 +29,7 @@ body {
 
 h2 {
   font-size: 2.5rem;
-  font-weight: normal;
+  font-weight: bold;
 }
 
 .bolding {
@@ -311,7 +311,7 @@ tr {
   }
 
   h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
   }
 
   .doc-h1 {

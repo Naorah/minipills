@@ -522,7 +522,7 @@
   }
 
   .mp-grid-title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
     padding-bottom: 0.2rem;
     margin-bottom: 1rem;
