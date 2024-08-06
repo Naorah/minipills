@@ -14,6 +14,7 @@ const prisma = new PrismaClient();
 //
 export function getTextWidth(text, fontSize=12, fontFamily = 'Arial') {
   // Charger la police
+  if (!text) return 0;
   try {
     // Create a canvas element
     const canvas = createCanvas(20000, 200); // width and height can be arbitrary

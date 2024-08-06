@@ -14,6 +14,8 @@ import { createGradient, pill_padding } from '$lib/PillBuilder.js'
 // @param : scale                   : int  : scale for the image size
 //
 export function one_pill(first_text, first_color, first_background_color, logo, logo_color, shadow, pillng=false, scale=1) {
+  // Text
+
   // Format colors
   first_color = `#${first_color}`;
   const gradient_start = adjustColor(`#${first_background_color}`, 20);
@@ -56,7 +58,7 @@ export function one_pill(first_text, first_color, first_background_color, logo, 
   let textShadow = '';
   if (shadow) {
     const textShadowColor = adjustColor(first_color, -100);
-    textShadow = `
+    textShadow = first_text ? `
       <text
         x="${(width / 2) + (logoAimedSize / 2)}"
         y="57%"
@@ -68,7 +70,7 @@ export function one_pill(first_text, first_color, first_background_color, logo, 
       >
         ${first_text}
       </text>
-    `;
+    ` : '';
     if (logo) {
       const logoShadowColor = adjustColor(logo_color, -100);
       logoShadowFinal = `
@@ -80,7 +82,7 @@ export function one_pill(first_text, first_color, first_background_color, logo, 
   }
 
   // Main text
-  const mainText = `
+  const mainText = first_text ? `
     <g transform="translate(${(width / 2) + (logoAimedSize / 2)}, ${height / 2 + 1 + pillngBonusHeight})">
       <text
         dominant-baseline="middle"
@@ -92,7 +94,7 @@ export function one_pill(first_text, first_color, first_background_color, logo, 
         ${first_text}
       </text>
     </g>
-  `;
+  ` : '';
 
   return `
     <svg viewBox="0 0 ${width} ${height}" width="${width * scale}" height="${height * scale}" xmlns="http://www.w3.org/2000/svg">

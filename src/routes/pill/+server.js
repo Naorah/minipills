@@ -79,12 +79,12 @@ export async function GET({ url }) {
   }
 
   // Check params
-  if (!first_text) {
+  if (!first_text && !logo_svg) {
     error = true
   }
-  if (first_text && !second_text) {
+  if ((first_text || logo_svg) && !second_text) {
     is_one_pill = true;
-  } else if (first_text && second_text && !third_text) {
+  } else if ((first_text || logo_svg) && second_text && !third_text) {
     is_two_pill = true;
   }
 
