@@ -91,6 +91,10 @@
   }
 </script>
 
+<svelte:head>
+  <link rel="stylesheet" href="/css/pill.css" />
+</svelte:head>
+
 <section class="c-back">
   <div class="mp-container first-section">
     <h1 class="mp-h1 big">MINI PILLS</h1>
@@ -325,112 +329,150 @@
   <div class="mp-container">
     <div class="mp-description">
 
-      <h2>Where ?</h2>
-  
-      <div class="where-to-use-grid">
-        <!-- MARKDOWN INTEGRATION -->
-        <div class=" where-to-use-item">
-          <h3 class="icon-text-container">
-            <Icon style="color:var(--color);" width=30 icon="bi:markdown"/>
-            <span class="v-align ">
+      <h2>Your addiction everywhere.</h2>
+
+      <!-- MARKDOWN INTEGRATION -->
+      <div>
+        <div class="pill-zone">
+          <div class="pill-part pill-left pill-red">
+            <div class="icon-container">
+              <Icon style="color: white;" width=30 icon="bi:markdown"/>
+            </div>
+          </div>
+
+          <div class="pill-part pill-right pill-black">
+            <div class="bolding">
               Markdown
-            </span>
-          </h3>
-          <div>
-            A <span class="bolding">simple</span> markdown integration to display a minipill and a link of your choice!
-          </div>
-          <div class="text-zone">
-            [![Minipills]({PUBLIC_PILL_URL}/pill?1t=link here)]({PUBLIC_PILL_URL})
-          </div>
-          <div>
-            Result
-            <a href="{PUBLIC_PILL_URL}">
-              <img src="{PUBLIC_PILL_URL}/pill?1t=link here" alt="minipills link"/>
-            </a>
+            </div>
+            <div class="pill-text-big">
+              A <span class="bolding">simple</span> markdown integration to display a minipill and a link of your choice!
+            </div>
+            <div class="pill-text-small">
+              A <span class="bolding">simple</span> markdown integration
+            </div>
           </div>
         </div>
 
-        <!-- DISPLAY DISCORD LINK -->
-        <div class=" where-to-use-item">
-          <h3 class="icon-text-container">
-            <Icon style="color:var(--color);" width=30 icon="ic:baseline-discord"/>
-            <span class="v-align">
+        <!-- DISCORD INTEGRATION -->
+        <div class="pill-zone">
+          
+          <div class="pill-part pill-left pill-red">
+            <div class="icon-container">
+              <Icon style="color: white;" width=30 icon="ic:baseline-discord"/>
+            </div>
+          </div>
+          
+          <div class="pill-part pill-right pill-black">
+            <div class="bolding">
               Discord
-            </span>
-          </h3>
-  
-          <div>
-            Discord can't display svg, so create a <span class="bolding">png minipill</span> with /pillng !
-          </div>
-          <div>
-            <div>
-              <div class="text-zone">
-                {PUBLIC_PILL_URL}/pillng?1t=Hello everybody !
-              </div>
-              <div>
-                Result
-                <a href="{PUBLIC_PILL_URL}">
-                  <img src="{PUBLIC_PILL_URL}/pillng?1t=Hello everybody !" alt="minipills link"/>
-                </a>
-              </div>
+            </div>
+            <div class="pill-text-big">
+              Discord can't display svg, so create a <span class="bolding">png minipill</span> with /pillng !
+            </div>
+            <div class="pill-text-small">
+              Send <span class="bolding">png minipill</span> instead !
             </div>
           </div>
-  
+
         </div>
-    
-        <div class=" where-to-use-item">
-          <h3 class="icon-text-container">
-            <Icon style="color:var(--color);" width=30 icon="fluent-mdl2:website"/>
-            <span class="v-align">
-              Websites
-            </span>
-          </h3>
-  
-          <div>
-            <span class="bolding">Instant integration</span> in img tags
-          </div>
-          <div>
-            <div>
-              <div class="text-zone">
-                &lt;img src=&quot;{PUBLIC_PILL_URL}/pill?1t=On an img tag !&quot; alt=&quot;minipills link&quot;/&gt;
-              </div>
-              <div>
-                Result
-                <a href="{PUBLIC_PILL_URL}">
-                  <img src="{PUBLIC_PILL_URL}/pill?1t=On an img tag !" alt="minipills link"/>
-                </a>
-              </div>
+
+        <!-- WEBSITE INTEGRATION -->
+        <div class="pill-zone">
+          
+          <div class="pill-part pill-left pill-red">
+            <div class="icon-container">
+              <Icon style="color: white;" width=30 icon="fluent-mdl2:website"/>
             </div>
           </div>
-  
+          
+          <div class="pill-part pill-right pill-black">
+            <div class="bolding">
+              Website
+            </div>
+            <div class="pill-text-big">
+              &lt;img src=&quot;{PUBLIC_PILL_URL}/pill?1t=<span class="bolding">IN IMG TAG !</span>&quot; alt=&quot;minipills link&quot;/&gt;
+            </div>
+            <div class="pill-text-small">
+              Instant integration in img tags !
+            </div>
+          </div>
         </div>
-    
-        <div class=" where-to-use-item">
-          <h3 class="icon-text-container">
-            <Icon style="color:var(--color);" width=30 icon="uil:presentation-line"/>
-            <span class="v-align">Presentations</span>
-          </h3>
-  
-          <div>
-            Generate png images and display them into your slides & powerpoints with /pillng !
+
+        <!-- DOCUMENTATION INTEGRATION -->
+        <div class="pill-zone">
+          
+          <div class="pill-part pill-left pill-red">
+            <div class="icon-container">
+              <Icon icon="material-symbols:docs-add-on" />
+            </div>
           </div>
-          <div class="text-zone">
-            Use the <span class="bolding">&sc=[number]</span> parameter to ask for a bigger image !
+          
+          <div class="pill-part pill-right pill-black">
+            <div class="bolding">
+              Documentation
+            </div>
+            <div class="pill-text-big">
+              Colors attracts your eyes ! Use the highly customisation to enrich your docs !
+            </div>
+            <div class="pill-text-small">
+              Enrich <span class="bolding">docs</span> with colored pills !
+            </div>
           </div>
-          <div>
-            Result
-            <a href="{PUBLIC_PILL_URL}">
-              <img src="{PUBLIC_PILL_URL}/pillng?1t=EVEN BIGGER&sc=2" alt="minipills link"/>
-            </a>
+
+        </div>
+
+        <!-- STATUS INTEGRATION -->
+        <div class="pill-zone">
+          
+          <div class="pill-part pill-left pill-red">
+            <div class="icon-container">
+              <Icon icon="pajamas:status-health" />
+            </div>
           </div>
+          
+          <div class="pill-part pill-right pill-black">
+            <div class="bolding">
+              Status
+            </div>
+            <div class="pill-text-big">
+              Use minipills as indicators for all of your projects with nice logos !
+            </div>
+            <div class="pill-text-small">
+              Display with real-time pills !
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PRESENTATION INTEGRATION -->
+        <div class="pill-zone">
+          
+          <div class="pill-part pill-left pill-red">
+            <div class="icon-container">
+              <Icon style="color: white;" width=30 icon="uil:presentation-line"/>
+            </div>
+          </div>
+          
+          <div class="pill-part pill-right pill-black">
+            <div class="bolding">
+              Presentations
+            </div>
+            <div class="pill-text-big">
+              Generate images and display them into your slides with /pillng !
+            </div>
+            <div class="pill-text-small">
+              Png generation on your slides !
+            </div>
+          </div>
+
         </div>
       </div>
-        
+       
       
       <div>
         <h3 class="icon-text-container">
           <div>
-            <Icon style="color:var(--color);" width=20 icon="gg:more"/>
+            <Icon width=20 icon="gg:more"/>
             <span class="v-align">And more !</span>
           </div>
         </h3>
