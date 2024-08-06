@@ -1,5 +1,5 @@
 <script>
-  import { PUBLIC_PILL_URL } from '$env/static/public';
+  import { PUBLIC_PILL_URL, PUBLIC_SVELTE_NPM_PACKAGE } from '$env/static/public';
   import { lazyLoad } from '$lib/LazyLoad.js'
   import Icon from '@iconify/svelte';
 
@@ -243,11 +243,17 @@
 
     <div class="input-zone mp-grid-container">
       <div>
+        <Icon style="color:white;" icon="ion:caret-down" /> 
+      </div>
+      <div>
         {#if pill_link.startsWith(`${basic_link}`)}
           <img src="{pill_link}" alt="pill-test">
         {:else}
           <img src="{PUBLIC_PILL_URL}/pill?1t=Wrong url&1bc=a12613" alt="pill-test">
         {/if}
+      </div>
+      <div>
+        <Icon style="color:white;" icon="ion:caret-up" /> 
       </div>
       
       <div class="mp-tab">
@@ -265,6 +271,8 @@
     </div>
   </div>
 </section>
+
+<!-- SECOND SECTION WITH IMAGES -->
 
 <section class="bg-back">
   <div class="mp-container">

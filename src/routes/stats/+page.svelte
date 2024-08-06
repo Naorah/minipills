@@ -72,7 +72,7 @@
   </div>
 </section>
 
-<div class="chart-container">
+<div class="chart-container min-screen">
   <h2>Stats by Format</h2>
   <Line data={chartData} options={{
     responsive: true,

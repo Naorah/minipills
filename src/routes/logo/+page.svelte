@@ -299,11 +299,6 @@
     transition: 1s;
   }
 
-  .min-screen {
-    min-height: 100vh;
-    padding-bottom: 2rem;
-  }
-
   @media (max-width: 499px) {
     .grid-container {
       gap: 20px;
