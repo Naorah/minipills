@@ -69,8 +69,22 @@ export function two_pills(first_text, first_color, first_background_color, secon
   const logo_aimed_size = logo ? 18 : 0;
   const pillng_bonus_height = pillng ? 3 : 0;
   // final width of each part of the pill
-  const width_1 = text_width_1 + pill_padding + (logo ? (logo_aimed_size + 5) : 0);
+  const width_1 = text_width_1 + pill_padding + (first_text ? 5 : 0) + (logo ? logo_aimed_size : 0);
   const width_2 = text_width_2 + pill_padding;
+
+  // Text creation
+  let main_text_1 = first_text ? `
+    <text 
+      x="${(width_1 / 2) + logo_aimed_size / 2}"
+      y="${height / 2 + 1 + pillng_bonus_height}" 
+      dominant-baseline="middle" 
+      text-anchor="middle" 
+      fill="${first_color}"
+      font-size="12"
+      font-family="Arial"
+    >
+      ${first_text}
+    </text>` : 0;
 
   // Logo creation
   let logo_final = '';
@@ -90,7 +104,7 @@ export function two_pills(first_text, first_color, first_background_color, secon
   }
 
   // text shadow handler
-  const text_shadow_1 = shadow ? `
+  const text_shadow_1 = shadow && first_text ? `
     <text
     x="${(width_1/2) + logo_aimed_size/2}"
     y="57%"
@@ -103,7 +117,7 @@ export function two_pills(first_text, first_color, first_background_color, secon
     ${first_text}
     </text>
   ` : ''
-  const text_shadow_2 = shadow ? `
+  const text_shadow_2 = shadow && second_text ? `
     <text
     x="${width_1 + (width_2 / 2)}"
     y="57%"
@@ -134,18 +148,7 @@ export function two_pills(first_text, first_color, first_background_color, secon
       ${logo_shadow_final}
       ${logo_final}
       ${text_shadow_1}
-
-      <text 
-        x="${(width_1 / 2) + logo_aimed_size / 2}"
-        y="${height / 2 + 1 + pillng_bonus_height}" 
-        dominant-baseline="middle" 
-        text-anchor="middle" 
-        fill="${first_color}"
-        font-size="12"
-        font-family="Arial"
-      >
-        ${first_text}
-      </text>
+      ${main_text_1}
       <path
         d="${getPillData(width_2, height, radius, 'second')}" 
         fill="${`url(#second_gradient)`}"

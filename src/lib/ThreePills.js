@@ -101,7 +101,7 @@ export function three_pills(
   const logo_aimed_size = logo ? 18 : 0;
   const pillng_bonus_height = pillng ? 3 : 0;
   // final width of each part of the pill
-  const width_1 = text_width_1 + pill_padding + (logo ? (logo_aimed_size + 5) : 0);
+  const width_1 = text_width_1 + pill_padding + (first_text ? 5 : 0) + (logo ? logo_aimed_size : 0);
   const width_2 = text_width_2 + pill_padding;
   const width_3 = text_width_3 + pill_padding;
 
@@ -121,6 +121,19 @@ export function three_pills(
         ${logo.replace('<svg', `<svg fill="${adjustColor(logo_color, -100)}"`)}
       </g>` : ''
   }
+
+  const main_text_1 = first_text ? `
+        <text 
+        x="${(width_1 / 2) + logo_aimed_size / 2}"
+        y="${height / 2 + 1 + pillng_bonus_height}" 
+        dominant-baseline="middle" 
+        text-anchor="middle" 
+        fill="${first_color}"
+        font-size="12"
+        font-family="Arial"
+      >
+        ${first_text}
+      </text>` : '';
 
   // text shadow
   const text_shadow_1 = shadow ? `
@@ -179,17 +192,7 @@ export function three_pills(
       ${logo_shadow_final}
       ${logo_final}
       ${text_shadow_1}
-      <text 
-        x="${(width_1 / 2) + logo_aimed_size / 2}"
-        y="${height / 2 + 1 + pillng_bonus_height}" 
-        dominant-baseline="middle" 
-        text-anchor="middle" 
-        fill="${first_color}"
-        font-size="12"
-        font-family="Arial"
-      >
-        ${first_text}
-      </text>
+      ${main_text_1}
 
       <path
         d="${getPillData(width_2, height, radius, 'second')}" 

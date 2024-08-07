@@ -14,8 +14,6 @@ import { createGradient, pill_padding } from '$lib/PillBuilder.js'
 // @param : scale                   : int  : scale for the image size
 //
 export function one_pill(first_text, first_color, first_background_color, logo, logo_color, shadow, pillng=false, scale=1) {
-  // Text
-
   // Format colors
   first_color = `#${first_color}`;
   const gradient_start = adjustColor(`#${first_background_color}`, 20);
@@ -29,7 +27,7 @@ export function one_pill(first_text, first_color, first_background_color, logo, 
   const pillngBonusHeight = pillng ? 3 : 0;
   const scaleFactor = logoAimedSize / logoWidth;
   const textWidth = getTextWidth(first_text);
-  let width = textWidth + pill_padding + logoAimedSize + (logo ? 5 : 0);
+  let width = textWidth + pill_padding + logoAimedSize + (first_text ? 5 : 0);
 
   const rect = `
     <rect 

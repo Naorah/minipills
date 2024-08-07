@@ -32,7 +32,7 @@
       type: "string",
       required: true,
       title: "First text",
-      description: "First text of the pill. If it's a double pill, then it's the text on the left side.",
+      description: "First text of the pill. If it's a double pill, then it's the text on the left side. Is required if no logo",
       example: "1t=Let's go",
     },
     {
@@ -119,9 +119,9 @@
     {
       name: "l",
       type: "string",
-      required: false,
+      required: true,
       title: "Logo",
-      description: "Logo to appear in the first part of the pill. The value must be the simplified text you'll find above each logo on the logo page.",
+      description: "Logo to appear in the first part of the pill. The value must be the logo tag. Is required if no first text",
       example: "&l=minipills",
     },
     {
